@@ -1,0 +1,8 @@
+{
+  "status": "true",
+  "message": "",
+  "rowList": [
+    { "rowId": "R1", "rowName": "R1",  "totalArticles": "40"},
+    { "rowId": "R2", "rowName": "R2",  "totalArticles": "60"}
+  ]
+}

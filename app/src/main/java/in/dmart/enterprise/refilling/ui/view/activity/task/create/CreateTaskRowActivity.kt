@@ -12,6 +12,7 @@ import `in`.dmart.enterprise.refilling.util.setAdapterToView
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.mindorks.framework.mvvm.utils.TaskType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +26,7 @@ class CreateTaskRowActivity : BaseActivity<ActivityCreateTaskRowBinding>(),
         super.onCreate(savedInstanceState)
         dataBinding = putContentView(R.layout.activity_create_task_row)
         setObserver()
-        createRowViewModel.sendRowRequest()
+        createRowViewModel.sendRowRequest(TaskType.CREATE)
     }
     fun setObserver(){
         createRowViewModel.rowList.observe(this, Observer {

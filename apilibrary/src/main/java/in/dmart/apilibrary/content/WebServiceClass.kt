@@ -21,6 +21,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -62,7 +63,7 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
     }
 
 
-    fun  getData(url: String, reqBody: Any?, headerMap: Map<String, String>, c: Class<*>,
+    fun  getData(url: String, reqBody: Any?, c: Class<*>,
                     apiResponse: ApiResponse<Any,Throwable>,header: Map<String, String> = headerMap) {
         showProgressDialog()
         val call: Call<ResponseBody> = if (reqBody != null) {
@@ -70,6 +71,7 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
         } else {
             apiService.getData(url, header)
         }
+
         call.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 triggerSuccessResponse(url, reqBody, response, apiResponse, c)
@@ -311,4 +313,19 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
             return map
         }
     }
+
+    private fun getJsonDataFromAsset(fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
+    }
+    fun <T>getDataFromFile(fileName:String,c: Class<T>): T {
+        return GSONUtil.fromJson(getJsonDataFromAsset(fileName),c)
+    }
+
 }

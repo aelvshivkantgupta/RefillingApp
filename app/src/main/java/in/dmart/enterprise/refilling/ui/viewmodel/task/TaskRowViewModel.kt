@@ -33,6 +33,8 @@ class TaskRowViewModel  @Inject constructor(val webServices: WebServiceClass): V
                 }
 
             }
+            _rowList.postValue(webServices.getDataFromFile("task_row_list.json",CreateTaskRow::class.java).rowList)
+
             //webServices.login()
         }
 
