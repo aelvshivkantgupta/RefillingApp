@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseurl">https://enterprise.dmart.in</string>
+<!--
+    <string name="baseurl">https://enterprise-test.dmart.in</string>
+-->
+    <!--<string name="baseurl">https://enterprise-dr.dmart.in</string>-->
+    <string name="slackwebhookkey">T0GSCBPUJ/B4SC05G2D/YDhUBAq3gv5MiFQyFV5L5yb2</string>
+</resources>

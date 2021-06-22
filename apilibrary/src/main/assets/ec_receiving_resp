@@ -1,0 +1,27 @@
+{
+  "message": "",
+  "isSuccess": true,
+  "totalCrates": 100,
+  "consignments": [
+    {
+      "conId": "EC010718AACM1645",
+      "conDate": "01-07-2018 14:45",
+      "crates": 70,
+      "pupCode": "AACM",
+      "driver": "Ram Yadav",
+      "vehicle": "MH02CN7890",
+      "tripId": "TFH019876",
+      "type": "pup"
+    },
+    {
+      "conId": "EC010718AACM1646",
+      "conDate": "01-07-2018 14:45",
+      "crates": 30,
+      "pupCode": "ABCM",
+      "driver": "Sham Yadav",
+      "vehicle": "MH02CN7890",
+      "tripId": "TFH019876",
+      "type": "hd"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "message": "",
+  "isSuccess": true,
+  "vehicles": [
+    {
+      "receivingId": "",
+      "vehicle": "MH02CY1987",
+      "plant": "AACM, AACN",
+      "expectedCrates": 141,
+      "cratesUnloaded": 120,
+      "dateOfUnloading": "01-08-20",
+      "discrepancy": 21,
+      "consignments": [
+        {
+          "conID": "EC010718AACM1645",
+          "conDate": "01-07-2018 14:45",
+          "crates": 80,
+          "pupCode": "AACM",
+          "driver": "Ram YAdav",
+          "type": "pup"
+        },
+        {
+          "conID": "EC010718AACM1655",
+          "conDate": "01-07-2018 14:45",
+          "crates": 40,
+          "pupCode": "",
+          "driver": "Sham YAdav",
+          "type": "hd"
+        }
+      ]
+    }
+  ]
+}

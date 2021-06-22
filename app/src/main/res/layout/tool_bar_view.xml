@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tool_bar_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/magenta_500">
+
+        <RelativeLayout
+            android:id="@+id/toolView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/appIcon"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/_10dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/appIcon"
+                android:text="@string/app_name"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_18sp" />
+
+
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/rightMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/manual"
+                android:textSize="@dimen/txt_18sp"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                android:layout_margin="@dimen/_5dp"/>
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.MaterialToolbar>
+</layout>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/changePwd"
+        android:title="@string/change_pwd" />
+
+    <item
+        android:id="@+id/logout"
+        android:title="@string/logout" />
+    <item
+        android:id="@+id/txtVersion"
+        android:title=""
+        android:enabled="false"
+        android:visible="false"/>
+</menu>

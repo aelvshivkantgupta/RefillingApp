@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "673128204998",
+    "project_id": "refillingapp-98a09",
+    "storage_bucket": "refillingapp-98a09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673128204998:android:6b6deccb003fc92c6565c7",
+        "android_client_info": {
+          "package_name": "in.dmart.enterprise.refilling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673128204998-t38s3n76svslkcjtv9t07m7g3b09mqvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKG_55aDOz221fbYO9gEf-rUIjKz-JDTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673128204998-t38s3n76svslkcjtv9t07m7g3b09mqvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673128204998:android:42376e622da291e86565c7",
+        "android_client_info": {
+          "package_name": "in.dmart.enterprise.refilling.uat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673128204998-t38s3n76svslkcjtv9t07m7g3b09mqvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKG_55aDOz221fbYO9gEf-rUIjKz-JDTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673128204998-t38s3n76svslkcjtv9t07m7g3b09mqvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

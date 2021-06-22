@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="magenta_200">#FFAB91</color>
+    <color name="magenta_500">#FF5722</color>
+    <color name="magenta_700">#E64A19</color>
+    <color name="ligth_green_900">#33691E</color>
+    <color name="blue">#1834CF</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="magenta_100">#FFCCBC</color>
+</resources>

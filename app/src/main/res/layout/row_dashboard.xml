@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="String" />
+    </data>
+<in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_10dp"
+    android:layout_marginRight="@dimen/_10dp"
+    android:layout_marginTop="@dimen/_5dp"
+    android:layout_marginBottom="@dimen/_5dp"
+    app:cardBackgroundColor="@color/magenta_200"
+    android:tag="@{model}"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height"
+        android:gravity="center">
+
+        <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model}"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:textSize="@dimen/large_text_size"
+            />
+
+    </LinearLayout>
+</in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
+
+</layout>

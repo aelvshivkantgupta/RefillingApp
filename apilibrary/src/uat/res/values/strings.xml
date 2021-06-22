@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseurl"> https://enterprise-uat.dmart.in</string>
+<!--
+    for dad only
+-->
+    <string name="slackwebhookkey">T0GSCBPUJ/B4T717ULA/ClSewk5vBcYZ3PxWQj5w3tAT</string>
+</resources>

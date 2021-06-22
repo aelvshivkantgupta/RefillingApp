@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">RefillingApp</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="manual">Manual</string>
+    <string name="hint_user_name">UserName</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login_txt">Login</string>
+    <string name="change_pwd">Change Password</string>
+    <string name="logout">Logout</string>
+    <string name="item">Item</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="stock_in_hand">Stock In-Hand</string>
+    <string name="shorts">Shorts</string>
+    <string name="mrp">MRP</string>
+    <string name="demand">Demand</string>
+    <string name="caselot">Caselot</string>
+    <string name="create_task">Create Task</string>
+    <string name="refilling_qty">Refilling Qty</string>
+    <string name="close_task">Close Task</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="welcome_user">Welcome User,</string>
+
+    <string name="err_login">Please enter user name</string>
+    <string name="err_pwd">Please Enter a Password</string>
+
+    <string-array name="dashboard">
+        <item>Create Task</item>
+        <item>Review Task</item>
+    </string-array>
+    <string-array name="create_task_dashboard">
+        <item>Select FC Row</item>
+        <item>Scan Articles</item>
+    </string-array>
+</resources>
