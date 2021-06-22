@@ -21,13 +21,9 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import javax.net.ssl.HostnameVerifier
 
-/**
- * Created by anamika.chavan on 10-11-2017.
- */
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkingModule {
-
      val responseTimeOut: Int
         get() = 120
     @Provides

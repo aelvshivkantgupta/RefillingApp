@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:padding="@dimen/_10dp">
+        android:padding="@dimen/_10dp"
+        android:layout_margin="@dimen/_5dp">
 
         <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
             android:layout_width="wrap_content"

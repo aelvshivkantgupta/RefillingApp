@@ -1,6 +1,7 @@
 package `in`.dmart.enterprise.refilling.ui.view.activity.task.review
 
 import `in`.dmart.enterprise.refilling.R
+import `in`.dmart.enterprise.refilling.constant.Constant
 import `in`.dmart.enterprise.refilling.databinding.ActivityReviewTaskBinding
 import `in`.dmart.enterprise.refilling.databinding.ReviewTaskRowBinding
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.Row
@@ -12,7 +13,9 @@ import `in`.dmart.enterprise.refilling.util.setAdapterToView
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.mindorks.framework.mvvm.utils.TaskType
+import `in`.dmart.enterprise.refilling.model.apimodel.task.row.TaskType
+import android.content.Intent
+import android.view.View
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,6 +46,12 @@ class ReviewTaskRowActivity : BaseActivity<ActivityReviewTaskBinding>(),AdapterL
         holder: CustomAdapter<ReviewTaskRowBinding, Row>.ViewHolder,
         position: Int,
     ) {
+        holder.itemBinding.root.setOnClickListener(View.OnClickListener {
+            val model = it.getTag() as? Row
+            val  intent = Intent(this,ReviewTaskArticleActivity::class.java)
+            intent.putExtra(Constant.OBJ,model)
+            startActivity(intent)
+        })
 
     }
 }

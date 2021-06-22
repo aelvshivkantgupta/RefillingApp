@@ -1,4 +1,6 @@
-package com.mindorks.framework.mvvm.utils
+package `in`.dmart.enterprise.refilling.apiutil
+
+import `in`.dmart.enterprise.refilling.apiutil.Status
 
 data class Resource<T>(val status: Status, val data: T?, val message: String?) {
 

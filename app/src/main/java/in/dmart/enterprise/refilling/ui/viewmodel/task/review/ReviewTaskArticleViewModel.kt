@@ -2,7 +2,7 @@ package `in`.dmart.enterprise.refilling.ui.viewmodel.task.review
 
 import `in`.dmart.apilibrary.content.ApiResponse
 import `in`.dmart.apilibrary.content.WebServiceClass
-import `in`.dmart.enterprise.refilling.model.apimodel.login.response.LoginResp
+import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.request.ReviewTaskArticleRequest
 import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.response.ReviewTaskArticle
 import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.response.ReviewTaskArticleData
 import androidx.lifecycle.LiveData
@@ -21,8 +21,21 @@ class ReviewTaskArticleViewModel  @Inject constructor(val webServices: WebServic
 
 
 
-    fun sendArticleRequest(){
-        val loginResp = LoginResp()
+    fun sendArticleRequest(rowId:String? = "",ean:String? = ""){
+        var reviewTaskArticleReq = ReviewTaskArticleRequest(rowId,ean)
+        val reviewTaskArticleData = webServices.getDataFromFile("review_article_list",ReviewTaskArticleData::class.java)
+        reviewTaskArticleData.articleList?.let {
+            for (item in it){
+                if (item.rowId==rowId || item.ean!!.split(",").contains(reviewTaskArticleReq.ean)){
+                    _articleList.postValue(reviewTaskArticleData.articleList)
+                    break
+                }else{
+                    _articleList.postValue(ArrayList())
+                    break
+                }
+            }
+        }
+
         //apiResponse.onSuccess(null)
         viewModelScope.launch {
             val apiResponse = object : ApiResponse<ReviewTaskArticleData,Throwable?> {
@@ -37,6 +50,9 @@ class ReviewTaskArticleViewModel  @Inject constructor(val webServices: WebServic
                 }
 
             }
+
+
+
             //webServices.login()
         }
 

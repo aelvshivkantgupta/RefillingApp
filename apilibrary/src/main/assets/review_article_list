@@ -1,0 +1,44 @@
+{
+  "status": "true",
+  "message": "",
+  "totalArticles": "40",
+  "articleList": [
+    {
+    "taskId":"123",
+    "rowName": "R1",
+    "rowId": "R1",
+    "itemId": "123456789",
+    "ean": "101,1234",
+    "description": "Unibic",
+    "fixBin": "R2-01-1A",
+    "stockInHand": "200",
+    "demand": "40",
+    "shorts": "0",
+    "caseLotQty": "20",
+    "mrp": "120",
+    "isTaskCreated": "false",
+    "shortTime": "1234567890000",
+    "highPriority": "false",
+    "totalCaselot": "2",
+    "lastRefillingDetails": [{ "qty": "2 Caselot (40 Unit)",  "time": "12-01-20 15:40", "user": "", "comment":""}]
+  },
+    {
+      "taskId":"123",
+      "rowName": "R1",
+      "rowId": "R1",
+      "itemId": "123456788",
+      "ean": "101,1234",
+      "description": "Unibic",
+      "fixBin": "R2-01-1A",
+      "stockInHand": "200",
+      "demand": "40",
+      "shorts": "0",
+      "caseLotQty": "20",
+      "mrp": "120",
+      "isTaskCreated": "false",
+      "shortTime": "1234567890000",
+      "highPriority": "false",
+      "totalCaselot": "2",
+      "lastRefillingDetails": [{ "qty": "2 Caselot (40 Unit)",  "time": "12-01-20 15:40", "user": "", "comment":""}]
+    }
+  ]}

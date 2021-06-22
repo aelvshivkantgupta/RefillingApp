@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mindorks.framework.mvvm.utils.TaskType
+import `in`.dmart.enterprise.refilling.model.apimodel.task.row.TaskType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class TaskRowViewModel  @Inject constructor(val webServices: WebServiceClass): V
     val rowList: LiveData<List<Row>>
         get()= _rowList
 
-    fun sendRowRequest(taskType:TaskType){
+    fun sendRowRequest(taskType: TaskType){
         viewModelScope.launch {
             val apiResponse = object : ApiResponse<TaskRow, Throwable?> {
                 override fun onSuccess(response: TaskRow) {
@@ -35,7 +35,6 @@ class TaskRowViewModel  @Inject constructor(val webServices: WebServiceClass): V
             }
             var list = webServices.getDataFromFile("task_row_list",TaskRow::class.java).rowList
             _rowList.postValue(list)
-
             //webServices.login()
         }
 

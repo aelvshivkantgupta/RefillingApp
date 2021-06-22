@@ -12,7 +12,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(webServices:WebServiceClass):ViewModel(){
+class DashboardViewModel @Inject constructor():ViewModel(){
 
     val dashboardRow: MutableLiveData<List<String>> = MutableLiveData<List<String>>()
 

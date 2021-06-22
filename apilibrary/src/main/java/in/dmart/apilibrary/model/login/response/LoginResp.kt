@@ -1,4 +1,4 @@
-package `in`.dmart.enterprise.refilling.model.apimodel.login.response
+package `in`.dmart.apilibrary.model.login.response
 
 import java.io.Serializable
 

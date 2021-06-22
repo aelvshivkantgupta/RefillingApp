@@ -1,23 +1,16 @@
 package `in`.dmart.enterprise.refilling.ui.view.activity.login
 
-import `in`.dmart.apilibrary.constant.ApiUrls
-import `in`.dmart.apilibrary.content.ApiResponse
-import `in`.dmart.apilibrary.content.WebServiceClass
 import `in`.dmart.enterprise.refilling.R
-import `in`.dmart.enterprise.refilling.databinding.ActivityBaseBinding
 import `in`.dmart.enterprise.refilling.databinding.ActivityLoginBinding
-import `in`.dmart.enterprise.refilling.model.apimodel.login.request.LoginRequest
 import `in`.dmart.enterprise.refilling.ui.view.activity.BaseActivity
 import `in`.dmart.enterprise.refilling.ui.view.activity.dashboard.DashboardActivity
 import `in`.dmart.enterprise.refilling.ui.viewmodel.login.LoginViewModel
-import `in`.dmart.enterprise.refilling.util.AppUtil
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.mindorks.framework.mvvm.utils.Status
+import `in`.dmart.enterprise.refilling.apiutil.Status
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Objects
 
@@ -31,7 +24,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         dataBinding = putContentView(R.layout.activity_login)
         dataBinding.lifecycleOwner = this
         dataBinding.loginViewModel = loginViewModel
-        showActionBar(true)
         setLoginFieldObserver()
         setLoginResponseObserver()
     }
@@ -59,7 +51,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     }
 
-    /*fun setObserver(){
+   /* fun setObserver(){
         loginViewModel.loginResp.observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {

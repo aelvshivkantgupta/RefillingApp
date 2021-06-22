@@ -4,7 +4,7 @@ import `in`.dmart.apilibrary.content.ApiResponse
 import `in`.dmart.apilibrary.content.WebServiceClass
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.Article
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.ArticleData
-import `in`.dmart.enterprise.refilling.model.apimodel.login.response.LoginResp
+import `in`.dmart.apilibrary.model.login.response.LoginResp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

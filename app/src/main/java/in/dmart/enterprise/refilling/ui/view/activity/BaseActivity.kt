@@ -6,7 +6,7 @@ import `in`.dmart.apilibrary.content.FailureHandler
 import `in`.dmart.apilibrary.content.WebServiceClass
 import `in`.dmart.apilibrary.model.BlankReq
 import `in`.dmart.apilibrary.model.PostResponse
-import `in`.dmart.enterprise.refilling.model.apimodel.login.response.UserRole
+import `in`.dmart.apilibrary.model.login.response.UserRole
 import `in`.dmart.apilibrary.util.Logger
 import `in`.dmart.enterprise.refilling.R
 import `in`.dmart.enterprise.refilling.constant.Constant

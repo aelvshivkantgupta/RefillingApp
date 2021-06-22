@@ -1,9 +1,11 @@
 package `in`.dmart.enterprise.refilling.ui.view.activity.task.review
 
 import `in`.dmart.enterprise.refilling.R
+import `in`.dmart.enterprise.refilling.constant.Constant
 import `in`.dmart.enterprise.refilling.databinding.ActivityReviewTaskArticleBinding
 import `in`.dmart.enterprise.refilling.databinding.ReviewTaskArticleRowBinding
 import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.response.ReviewTaskArticle
+import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.Row
 import `in`.dmart.enterprise.refilling.ui.view.activity.BaseActivity
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.AdapterListener
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.CustomAdapter
@@ -25,7 +27,9 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
         dataBinding = putContentView(R.layout.activity_review_task_article)
         showActionBar(true)
         setObserver()
-        reviewTaskArticleViewModel.sendArticleRequest()
+        val row = intent.getParcelableExtra<Row>(Constant.OBJ)
+        reviewTaskArticleViewModel.sendArticleRequest(row.rowId!!)
+
     }
     fun setObserver(){
         reviewTaskArticleViewModel.articleList.observe(this, Observer {
@@ -33,17 +37,24 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
         } )
     }
 
-    fun setAdapter(articleList: List<ReviewTaskArticle>){
-        mAdapter = CustomAdapter<ReviewTaskArticleRowBinding,ReviewTaskArticle>(this,R.layout.create_task_article_row,articleList,this)
-        dataBinding.recyclerView.setAdapterToView(mAdapter!!,this,0)
+    fun setAdapter(articleList: List<ReviewTaskArticle>?){
+        if (articleList == null || articleList.isEmpty()){
+            finish()
+        }else {
+            mAdapter = CustomAdapter<ReviewTaskArticleRowBinding, ReviewTaskArticle>(this,
+                R.layout.review_task_article_row,
+                articleList,
+                this)
+            dataBinding.recyclerView.setAdapterToView(mAdapter!!, this, 0)
+        }
     }
 
     override fun onBindViewHolder(
         holder: CustomAdapter<ReviewTaskArticleRowBinding, ReviewTaskArticle>.ViewHolder,
         position: Int,
     ) {
-        TODO("Not yet implemented")
-    }
+
+   }
 
 
 }

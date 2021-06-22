@@ -1,12 +1,14 @@
 package `in`.dmart.enterprise.refilling.constant
 
-import `in`.dmart.enterprise.refilling.model.apimodel.login.response.UserRole
+import `in`.dmart.apilibrary.model.login.response.UserRole
 
 object Constant {
-   const val TAG_API_FAILURE: String="API failure error"
-    public var userId:String? =""
-    public var USER_NAME:String? =""
-    const val SCAN_QR = "By_QR"
-    const val SCAN_BAR = "By_Barcode"
-    var userRole: UserRole? = null
+  const val TAG_API_FAILURE: String="API failure error"
+  const val SCAN_QR = "By_QR"
+  const val SCAN_BAR = "By_Barcode"
+  const val OBJ = "obj"
+
+  var userId:String? =""
+  var USER_NAME:String? =""
+  var userRole: UserRole? = null
 }

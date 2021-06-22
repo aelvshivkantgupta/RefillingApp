@@ -1,4 +1,4 @@
-package `in`.dmart.enterprise.refilling.model.apimodel.login.request
+package `in`.dmart.apilibrary.model.login.request
 
 class LoginRequest {
     //private String userName;

@@ -10,7 +10,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_height"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_marginRight="@dimen/_10dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent">
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/search"
+                    android:layout_margin="@dimen/_5dp"
+                    android:hint="@string/search_row_no"
+                    android:background="@android:color/transparent"
+                    />
+                <Button
+                    android:id="@+id/search"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="match_parent"
+                    android:text="@string/go"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_5dp"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

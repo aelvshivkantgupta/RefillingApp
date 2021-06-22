@@ -12,7 +12,7 @@ import `in`.dmart.enterprise.refilling.util.setAdapterToView
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.mindorks.framework.mvvm.utils.TaskType
+import `in`.dmart.enterprise.refilling.model.apimodel.task.row.TaskType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
