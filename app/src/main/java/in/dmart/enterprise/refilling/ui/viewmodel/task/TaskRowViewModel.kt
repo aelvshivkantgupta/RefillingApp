@@ -2,7 +2,7 @@ package `in`.dmart.enterprise.refilling.ui.viewmodel.task
 
 import `in`.dmart.apilibrary.content.ApiResponse
 import `in`.dmart.apilibrary.content.WebServiceClass
-import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.CreateTaskRow
+import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.TaskRow
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.Row
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,8 +21,8 @@ class TaskRowViewModel  @Inject constructor(val webServices: WebServiceClass): V
 
     fun sendRowRequest(taskType:TaskType){
         viewModelScope.launch {
-            val apiResponse = object : ApiResponse<CreateTaskRow, Throwable?> {
-                override fun onSuccess(response: CreateTaskRow) {
+            val apiResponse = object : ApiResponse<TaskRow, Throwable?> {
+                override fun onSuccess(response: TaskRow) {
                     //write your business logic
 
                     _rowList.postValue(response.rowList)
@@ -33,7 +33,8 @@ class TaskRowViewModel  @Inject constructor(val webServices: WebServiceClass): V
                 }
 
             }
-            _rowList.postValue(webServices.getDataFromFile("task_row_list.json",CreateTaskRow::class.java).rowList)
+            var list = webServices.getDataFromFile("task_row_list",TaskRow::class.java).rowList
+            _rowList.postValue(list)
 
             //webServices.login()
         }

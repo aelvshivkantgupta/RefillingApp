@@ -9,7 +9,8 @@
         android:id="@+id/tool_bar_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/magenta_500">
+        android:background="@color/magenta_500"
+        android:layout_marginBottom="@dimen/_10dp">
 
         <RelativeLayout
             android:id="@+id/toolView"

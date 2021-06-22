@@ -3,12 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="model"
+            type="in.dmart.enterprise.refilling.model.apimodel.task.row.response.Row" />
     </data>
     <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5dp">
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_marginRight="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_5dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,11 +22,12 @@
             <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name"
+                android:text="@{model.rowName}"
                 android:textColor="@color/magenta_700"
                 android:layout_marginLeft="@dimen/_10dp"
                 android:textSize="@dimen/large_text_size"
                 android:textStyle="bold"
+
                 />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -32,7 +37,7 @@
                 <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
+                    android:text="@string/total_articles"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/large_text_size"
 
@@ -40,7 +45,7 @@
                 <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="40"
+                    tools:text="@{model.totalArticles}"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/large_text_size"
                     />

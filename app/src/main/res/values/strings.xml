@@ -31,6 +31,7 @@
 
     <string name="err_login">Please enter user name</string>
     <string name="err_pwd">Please Enter a Password</string>
+    <string name="total_articles">Total Articles</string>
 
     <string-array name="dashboard">
         <item>Create Task</item>

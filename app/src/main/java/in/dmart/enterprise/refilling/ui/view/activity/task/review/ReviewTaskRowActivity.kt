@@ -2,8 +2,7 @@ package `in`.dmart.enterprise.refilling.ui.view.activity.task.review
 
 import `in`.dmart.enterprise.refilling.R
 import `in`.dmart.enterprise.refilling.databinding.ActivityReviewTaskBinding
-import `in`.dmart.enterprise.refilling.databinding.ActivityReviewTaskRowBinding
-import `in`.dmart.enterprise.refilling.databinding.CrateTaskRowBinding
+import `in`.dmart.enterprise.refilling.databinding.ReviewTaskRowBinding
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.Row
 import `in`.dmart.enterprise.refilling.ui.view.activity.BaseActivity
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.AdapterListener
@@ -17,13 +16,15 @@ import com.mindorks.framework.mvvm.utils.TaskType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ReviewTaskRowActivity : BaseActivity<ActivityReviewTaskBinding>(),AdapterListener<CrateTaskRowBinding,Row>{
-    var mAdapter:CustomAdapter<CrateTaskRowBinding,Row>?=null
+class ReviewTaskRowActivity : BaseActivity<ActivityReviewTaskBinding>(),AdapterListener<ReviewTaskRowBinding,Row>{
+    var mAdapter:CustomAdapter<ReviewTaskRowBinding,Row>?=null
     val reviewRowViewModel : TaskRowViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = putContentView(R.layout.activity_review_task)
         showActionBar(true)
+        dataBinding.lifecycleOwner = this
+
         setObserver()
         reviewRowViewModel.sendRowRequest(TaskType.CREATE)
     }
@@ -34,14 +35,14 @@ class ReviewTaskRowActivity : BaseActivity<ActivityReviewTaskBinding>(),AdapterL
     }
 
     fun setAdapter(rowList: List<Row>){
-        mAdapter = CustomAdapter<CrateTaskRowBinding, Row>(this,R.layout.crate_task_row,rowList,this)
+        mAdapter = CustomAdapter<ReviewTaskRowBinding, Row>(this,R.layout.review_task_row,rowList,this)
         dataBinding.recyclerView.setAdapterToView(mAdapter!!,this,0)
     }
 
     override fun onBindViewHolder(
-        holder: CustomAdapter<CrateTaskRowBinding, Row>.ViewHolder,
+        holder: CustomAdapter<ReviewTaskRowBinding, Row>.ViewHolder,
         position: Int,
     ) {
-        TODO("Not yet implemented")
+
     }
 }

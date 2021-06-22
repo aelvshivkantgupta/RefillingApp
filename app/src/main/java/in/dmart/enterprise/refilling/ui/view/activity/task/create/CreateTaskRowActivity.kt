@@ -25,8 +25,11 @@ class CreateTaskRowActivity : BaseActivity<ActivityCreateTaskRowBinding>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = putContentView(R.layout.activity_create_task_row)
+        dataBinding.lifecycleOwner = this
+
         setObserver()
         createRowViewModel.sendRowRequest(TaskType.CREATE)
+
     }
     fun setObserver(){
         createRowViewModel.rowList.observe(this, Observer {

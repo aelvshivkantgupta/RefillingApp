@@ -68,7 +68,7 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
         window.attributes = lp
         val toolbar = binding.toolbarLayout.toolBarView
         setSupportActionBar(toolbar)
-        showActionBar(false)
+        showActionBar(true)
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
