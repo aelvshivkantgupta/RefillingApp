@@ -13,6 +13,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.TaskType
+import `in`.dmart.enterprise.refilling.util.searchByRowName
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,16 +35,21 @@ class CreateTaskRowActivity : BaseActivity<ActivityCreateTaskRowBinding>(),
         createRowViewModel.sendRowRequest(TaskType.CREATE)
 
     }
-    fun setObserver(){
+    private fun setObserver(){
         createRowViewModel.rowList.observe(this, Observer {
             setAdapter(it)
         } )
     }
 
-    fun setAdapter(rowList: List<Row>){
+    private fun setAdapter(rowList: List<Row>){
         mAdapter = CustomAdapter<CrateTaskRowBinding, Row>(this,R.layout.crate_task_row,rowList,this)
         dataBinding.recyclerView.setAdapterToView(mAdapter!!,this,0)
+
+        mAdapter?.let { dataBinding.etSearch.searchByRowName(dataBinding.search, it) }
+
     }
+
+
 
     override fun onBindViewHolder(holder: CustomAdapter<CrateTaskRowBinding,Row>.ViewHolder, position: Int) {
 

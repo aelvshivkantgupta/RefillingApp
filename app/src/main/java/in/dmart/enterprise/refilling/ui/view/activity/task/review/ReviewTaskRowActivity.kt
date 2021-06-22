@@ -14,33 +14,41 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.TaskType
+import `in`.dmart.enterprise.refilling.util.searchByRowName
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ReviewTaskRowActivity : BaseActivity<ActivityReviewTaskBinding>(),AdapterListener<ReviewTaskRowBinding,Row>{
-    var mAdapter:CustomAdapter<ReviewTaskRowBinding,Row>?=null
-    val reviewRowViewModel : TaskRowViewModel by viewModels()
+    private var mAdapter:CustomAdapter<ReviewTaskRowBinding,Row>?=null
+    private val taskReviewRowViewModel : TaskRowViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = putContentView(R.layout.activity_review_task)
         showActionBar(true)
         dataBinding.lifecycleOwner = this
-
         setObserver()
-        reviewRowViewModel.sendRowRequest(TaskType.CREATE)
+        taskReviewRowViewModel.sendRowRequest(TaskType.CREATE)
+
     }
-    fun setObserver(){
-        reviewRowViewModel.rowList.observe(this, Observer {
+
+    private fun setObserver(){
+        taskReviewRowViewModel.rowList.observe(this, Observer {
             setAdapter(it)
         } )
     }
 
-    fun setAdapter(rowList: List<Row>){
+    private fun setAdapter(rowList: List<Row>){
         mAdapter = CustomAdapter<ReviewTaskRowBinding, Row>(this,R.layout.review_task_row,rowList,this)
         dataBinding.recyclerView.setAdapterToView(mAdapter!!,this,0)
+
+        mAdapter?.let { dataBinding.etSearch.searchByRowName(dataBinding.search, it) }
     }
+
+
 
     override fun onBindViewHolder(
         holder: CustomAdapter<ReviewTaskRowBinding, Row>.ViewHolder,

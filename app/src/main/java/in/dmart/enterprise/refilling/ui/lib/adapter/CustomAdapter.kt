@@ -69,7 +69,7 @@ class CustomAdapter<DataBinding : ViewDataBinding, ModelType : Any>(private val 
         try {
             charText = charText.toLowerCase()
             val searchList = ArrayList<ModelType>()
-            if (charText.length == 0) {
+            if (charText.isEmpty()) {
                 searchList.addAll(originalList)
             } else {
                 for (model in originalList) {

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +34,8 @@
                 android:layout_height="match_parent"
                 android:text="@string/go"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_5dp"/>
+                android:layout_marginRight="@dimen/_5dp"
+               />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 

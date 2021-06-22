@@ -13,6 +13,7 @@ class SplashScreen : BaseActivity<ActivitySplashBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = putContentView(R.layout.activity_splash)
+        showActionBar(false)
        // remoteConfig.init(this)
         Handler(Looper.getMainLooper()).postDelayed({
             /* Create an Intent that will start the Menu-Activity. */
