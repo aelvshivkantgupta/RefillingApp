@@ -14,7 +14,9 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.mindorks.framework.mvvm.utils.TaskType
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ReviewTaskRowActivity : BaseActivity<ActivityReviewTaskBinding>(),AdapterListener<CrateTaskRowBinding,Row>{
     var mAdapter:CustomAdapter<CrateTaskRowBinding,Row>?=null
     val reviewRowViewModel : TaskRowViewModel by viewModels()

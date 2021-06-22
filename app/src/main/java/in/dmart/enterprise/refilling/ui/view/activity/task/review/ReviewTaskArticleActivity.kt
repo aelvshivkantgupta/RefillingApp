@@ -12,7 +12,9 @@ import `in`.dmart.enterprise.refilling.util.setAdapterToView
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>() ,
     AdapterListener<ReviewTaskArticleRowBinding, ReviewTaskArticle> {
     var mAdapter:CustomAdapter<ReviewTaskArticleRowBinding,ReviewTaskArticle>?=null
