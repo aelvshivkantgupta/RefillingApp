@@ -28,5 +28,6 @@
     </style>
 
     <style name="Theme.RefillingApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="Theme.RefillingApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

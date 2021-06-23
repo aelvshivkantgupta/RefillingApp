@@ -1,6 +1,7 @@
 package `in`.dmart.enterprise.refilling.ui.view.activity.task.create
 
 import `in`.dmart.enterprise.refilling.R
+import `in`.dmart.enterprise.refilling.constant.Constant
 import `in`.dmart.enterprise.refilling.databinding.ActivityCreateTaskRowBinding
 import `in`.dmart.enterprise.refilling.databinding.CrateTaskRowBinding
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.Row
@@ -14,6 +15,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.TaskType
 import `in`.dmart.enterprise.refilling.util.searchByRowName
+import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -22,15 +24,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CreateTaskRowActivity : BaseActivity<ActivityCreateTaskRowBinding>(),
     AdapterListener<CrateTaskRowBinding, Row> {
-    var mAdapter:CustomAdapter<CrateTaskRowBinding,Row>?=null
-    val createRowViewModel : TaskRowViewModel by viewModels()
+    private var mAdapter:CustomAdapter<CrateTaskRowBinding,Row>?=null
+    private val createRowViewModel : TaskRowViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = putContentView(R.layout.activity_create_task_row)
         dataBinding.lifecycleOwner = this
-
+        setTitle(resources.getString(R.string.fc_row))
         setObserver()
         createRowViewModel.sendRowRequest(TaskType.CREATE)
 
@@ -53,6 +55,11 @@ class CreateTaskRowActivity : BaseActivity<ActivityCreateTaskRowBinding>(),
 
     override fun onBindViewHolder(holder: CustomAdapter<CrateTaskRowBinding,Row>.ViewHolder, position: Int) {
 
-
+        holder.itemBinding.root.setOnClickListener(View.OnClickListener {
+            val model = it.getTag() as? Row
+            val  intent = Intent(this,CreateTaskArticleActivity::class.java)
+            intent.putExtra(Constant.OBJ,model)
+            startActivity(intent)
+        })
     }
 }

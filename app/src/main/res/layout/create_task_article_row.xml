@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="model"
+            type="in.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle" />
     </data>
 <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
     android:layout_width="match_parent"
@@ -42,7 +44,7 @@
                android:id="@+id/itemId"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               tools:text="12345678"/>
+               tools:text="@{model.itemId}"/>
            </LinearLayout>
            <LinearLayout
                android:layout_width="match_parent"
@@ -56,7 +58,7 @@
                    android:id="@+id/description"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   tools:text="Quaker Oats 1.5Kg"/>
+                   tools:text="@{model.description}"/>
            </LinearLayout>
            <LinearLayout
                android:layout_width="match_parent"
@@ -70,7 +72,7 @@
                    android:id="@+id/location"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   tools:text="R2-01-1A"/>
+                   tools:text="@{model.fixBin}"/>
            </LinearLayout>
            <RelativeLayout
                android:layout_width="match_parent"
@@ -90,7 +92,7 @@
                        android:id="@+id/stockInHand"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       tools:text="200"
+                       tools:text="@{model.stockInHand}"
                        android:textColor="@color/ligth_green_900"/>
                </LinearLayout>
                <LinearLayout
@@ -108,7 +110,7 @@
                        android:id="@+id/demand"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       tools:text="40"
+                       tools:text="@{model.demand}"
                        android:textColor="@color/magenta_700"/>
                </LinearLayout>
 
@@ -132,7 +134,7 @@
                        android:id="@+id/shorts"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       tools:text="0"
+                       tools:text="@{model.shorts}"
                        android:textColor="@color/ligth_green_900"/>
                </LinearLayout>
                <LinearLayout
@@ -150,7 +152,7 @@
                        android:id="@+id/caselot"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       tools:text="10"
+                       tools:text="@{model.caseLotQty}"
                        android:textColor="@color/ligth_green_900"/>
                </LinearLayout>
 
@@ -168,7 +170,7 @@
                   android:id="@+id/mrp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   tools:text="120"
+                   tools:text="@{model.mrp}"
                    android:textColor="@color/ligth_green_900"/>
            </LinearLayout>
            <in.dmart.enterprise.refilling.ui.lib.view.CustomButton
@@ -177,7 +179,8 @@
                android:layout_height="@dimen/task_btn_height"
                android:text="@string/create_task"
                android:backgroundTint="@color/magenta_200"
-               android:textColor="@color/black"/>
+               android:textColor="@color/black"
+               android:layout_marginTop="@dimen/_5dp"/>
        </LinearLayout>
     </RelativeLayout>
 </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>

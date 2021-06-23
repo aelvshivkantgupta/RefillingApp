@@ -14,28 +14,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RefillingApp">
-        <activity android:name="in.dmart.enterprise.refilling.ui.view.activity.task.review.ReviewTaskArticleActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name="in.dmart.enterprise.refilling.ui.view.activity.task.review.ReviewTaskRowActivity"
+        <activity
+            android:name=".ui.view.activity.task.create.ScanArticleActivity"
+            android:label="@string/title_activity_scan_article"
+            android:theme="@style/Theme.RefillingApp.NoActionBar"></activity>
+        <activity
+            android:name=".ui.view.activity.task.review.ReviewTaskArticleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="in.dmart.enterprise.refilling.ui.view.activity.task.create.CreateTaskRowActivity"
+            android:name=".ui.view.activity.task.review.ReviewTaskRowActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="in.dmart.enterprise.refilling.ui.view.activity.task.create.CreateTaskArticleActivity"
+            android:name=".ui.view.activity.task.create.CreateTaskRowActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="in.dmart.enterprise.refilling.ui.view.activity.dashboard.DashboardActivity"
+            android:name=".ui.view.activity.task.create.CreateTaskArticleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="in.dmart.enterprise.refilling.ui.view.activity.task.create.dashboard.CreateTaskDashboardActivity"
+            android:name=".ui.view.activity.dashboard.DashboardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="in.dmart.enterprise.refilling.ui.view.activity.login.LoginActivity"
+            android:name=".ui.view.activity.task.create.dashboard.CreateTaskDashboardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.view.activity.login.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
-            android:name="in.dmart.enterprise.refilling.ui.view.activity.SplashScreen"
+            android:name=".ui.view.activity.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

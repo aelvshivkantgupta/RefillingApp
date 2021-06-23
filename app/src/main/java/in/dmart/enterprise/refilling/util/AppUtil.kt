@@ -4,6 +4,7 @@ import `in`.dmart.apilibrary.constant.ConstantParameters
 import `in`.dmart.apilibrary.lib.GSONUtil
 import `in`.dmart.apilibrary.model.response_model.ErrorResponseModel
 import `in`.dmart.enterprise.refilling.constant.Constant
+import `in`.dmart.enterprise.refilling.ui.lib.Application.Companion.context
 import `in`.dmart.enterprise.refilling.ui.lib.non_fatal.CustomException
 import android.content.Context
 import android.os.Handler
@@ -15,7 +16,7 @@ import java.io.IOException
 import java.util.*
 
 object AppUtil {
-    fun showToast(context: Context?, msg: String?) {
+    fun showToast( msg: String?) {
         try {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
         } catch (e: Exception) {

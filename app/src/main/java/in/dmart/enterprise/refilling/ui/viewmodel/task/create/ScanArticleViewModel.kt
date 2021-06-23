@@ -2,10 +2,15 @@ package `in`.dmart.enterprise.refilling.ui.viewmodel.task.create
 
 import `in`.dmart.apilibrary.content.ApiResponse
 import `in`.dmart.apilibrary.content.WebServiceClass
+import `in`.dmart.enterprise.refilling.R
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticleData
 import `in`.dmart.enterprise.refilling.model.apimodel.article.request.CreateTaskArticleReq
+import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.request.ScanArticleRequest
+import `in`.dmart.enterprise.refilling.ui.lib.Application
+import `in`.dmart.enterprise.refilling.util.AppUtil
 import android.view.View
+import android.widget.Button
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,36 +20,31 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateTaskArticleViewModel  @Inject constructor(val webServices: WebServiceClass): ViewModel(){
+class ScanArticleViewModel  @Inject constructor(val webServices: WebServiceClass): ViewModel(){
+
     private var _articleList = MutableLiveData<List<CreateTaskArticle>>()
     val createTaskArticleList: LiveData<List<CreateTaskArticle>>
     get()= _articleList
-
-    private var _listHasAscendingData = false
-    val hasDataInAscendingOrder:Boolean
-        get() = _listHasAscendingData
-
-    private var _totalArticles = MutableLiveData<String>()
-    val totalArticles: LiveData<String>
-        get() = _totalArticles
+    val searchText: MutableLiveData<String> = MutableLiveData("")
 
 
-    fun sendArticleRequest(rowId:String? = ""){
-        var createTaskArticleReq = CreateTaskArticleReq(rowId)
+
+    fun sendArticleRequest(ean:String? = "",searchKey:String?=""){
+        var createTaskArticleReq = ScanArticleRequest(ean,searchKey)
         val createTaskArticleData = webServices.getDataFromFile("task_create_article_list",
             CreateTaskArticleData::class.java)
-        _totalArticles.postValue(createTaskArticleData.totalArticles)
-        var sortedList = sortArticleList(createTaskArticleData.articleList)
         createTaskArticleData.articleList?.let {
             for (item in it){
-                if (item.rowId==rowId){
-                    _articleList.postValue(sortedList)
+                if (item.ean?.contains(ean!!) == true){
+                    _articleList.postValue(createTaskArticleData.articleList.subList(0,1))
                     break
                 }else{
+                    AppUtil.showToast("No data found")
                     _articleList.postValue(ArrayList())
                     break
                 }
             }
+
         }
 
         //apiResponse.onSuccess(null)
@@ -69,18 +69,27 @@ class CreateTaskArticleViewModel  @Inject constructor(val webServices: WebServic
 
     }
 
+    fun onSearchClick(view: View){
+        if (view is Button){
+            searchText?.let {
+                var go = Application.context?.getString(R.string.go)
+                if (view.text.toString().equals(go,true)){
+                    if(it.value?.isEmpty() == true){
+                        AppUtil.showToast("Please enter or scan search text")
+                    }else {
+                        view.text = Application.context?.getString(R.string.clear)
+                        sendArticleRequest(it.value!!.trim())
+                    }
+                }else{
+                    view.text = go
+                    _articleList.value = ArrayList()
+                }
+            }
+        }
 
-    fun onSort(view: View){
-        _articleList.value = sortArticleList(createTaskArticleList.value)
+
+
     }
 
-    fun sortArticleList(list:List<CreateTaskArticle>?):List<CreateTaskArticle>? {
-        _listHasAscendingData= !_listHasAscendingData!!
-        return if (_listHasAscendingData) list?.sortedBy {
-            it.fixBin
-        } else list?.sortedBy {
-            it.fixBin
-        }?.reversed()
-    }
 
 }

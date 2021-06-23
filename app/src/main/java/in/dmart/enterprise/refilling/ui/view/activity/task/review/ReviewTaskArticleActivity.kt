@@ -19,8 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>() ,
     AdapterListener<ReviewTaskArticleRowBinding, ReviewTaskArticle> {
-    var mAdapter:CustomAdapter<ReviewTaskArticleRowBinding,ReviewTaskArticle>?=null
-    val reviewTaskArticleViewModel : ReviewTaskArticleViewModel by viewModels()
+    private var mAdapter:CustomAdapter<ReviewTaskArticleRowBinding,ReviewTaskArticle>?=null
+    private val reviewTaskArticleViewModel : ReviewTaskArticleViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,7 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
     }
     fun setObserver(){
         reviewTaskArticleViewModel.articleList.observe(this, Observer {
-            var drawable = if(reviewTaskArticleViewModel.isAscending) resources.getDrawable(R.drawable.ic_down) else resources.getDrawable(R.drawable.ic_up)
+            var drawable = if(reviewTaskArticleViewModel.hasDataInAscendingOrder) resources.getDrawable(R.drawable.ic_down) else resources.getDrawable(R.drawable.ic_up)
             dataBinding.upDown.setImageDrawable(drawable)
             setAdapter(it)
         } )

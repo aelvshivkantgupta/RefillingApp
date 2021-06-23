@@ -25,8 +25,8 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(),AdapterListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         showActionBar(true)
-
         dataBinding = putContentView(R.layout.activity_dashboard)
+        setTitle("AAA0-Kanjur FC")
         setupObserver()
     }
 

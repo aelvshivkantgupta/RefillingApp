@@ -1,6 +1,6 @@
 package `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse
 
-data class Article(
+data class CreateTaskArticle(
     val caseLotQty: String?,
     val demand: String?,
     val description: String?,
@@ -10,7 +10,7 @@ data class Article(
     val item: String?,
     val itemId: String?,
     val lastRefillingDetails: List<LastRefillingDetail>?,
-    val location: String?,
+    val fixBin: String?,
     val mrp: String?,
     val rowId: String?,
     val rowName: String?,

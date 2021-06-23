@@ -17,13 +17,14 @@ import java.util.Objects
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
-    val loginViewModel : LoginViewModel by viewModels()
+    private val loginViewModel : LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = putContentView(R.layout.activity_login)
         dataBinding.lifecycleOwner = this
         dataBinding.loginViewModel = loginViewModel
+        setTitle(resources.getString(R.string.login))
         setLoginFieldObserver()
         setLoginResponseObserver()
     }

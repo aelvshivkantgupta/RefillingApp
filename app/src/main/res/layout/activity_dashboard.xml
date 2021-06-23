@@ -32,8 +32,8 @@
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Manish Modi"
-                android:textSize="@dimen/large_text_size"
+                android:text="Manish Modi"
+                android:textSize="@dimen/medium_text_size"
                 android:textColor="@color/blue"/>
         </LinearLayout>
 

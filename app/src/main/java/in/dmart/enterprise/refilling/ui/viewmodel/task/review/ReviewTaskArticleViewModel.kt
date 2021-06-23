@@ -17,16 +17,16 @@ import javax.inject.Inject
 @HiltViewModel
 class ReviewTaskArticleViewModel  @Inject constructor(val webServices: WebServiceClass): ViewModel(){
     private var _articleList = MutableLiveData<List<ReviewTaskArticle>>()
-    private var _isAscending = true
-    val isAscending:Boolean
-        get() = _isAscending
+    val articleList: LiveData<List<ReviewTaskArticle>>
+    get()= _articleList
+
+    private var _listHasAscendingData = false
+    val hasDataInAscendingOrder:Boolean
+        get() = _listHasAscendingData
 
     private var _totalArticles = MutableLiveData<String>()
     val totalArticles: LiveData<String>
-    get() = _totalArticles
-
-    val articleList: LiveData<List<ReviewTaskArticle>>
-    get()= _articleList
+        get() = _totalArticles
 
 
 
@@ -75,12 +75,12 @@ class ReviewTaskArticleViewModel  @Inject constructor(val webServices: WebServic
     }
 
     fun sortArticleList(list:List<ReviewTaskArticle>?):List<ReviewTaskArticle>? {
-        _isAscending= !_isAscending!!
-        return if (_isAscending) list?.sortedBy {
+        _listHasAscendingData= !_listHasAscendingData!!
+        return if (_listHasAscendingData) list?.sortedBy {
             it.fixBin
-        }?.reversed() else list?.sortedBy {
+        } else list?.sortedBy {
             it.fixBin
-        }
+        }?.reversed()
     }
 
 

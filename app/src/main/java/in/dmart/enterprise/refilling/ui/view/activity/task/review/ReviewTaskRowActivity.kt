@@ -28,7 +28,7 @@ class ReviewTaskRowActivity : BaseActivity<ActivityReviewTaskBinding>(),AdapterL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = putContentView(R.layout.activity_review_task)
-        showActionBar(true)
+        setTitle(resources.getString(R.string.fc_row))
         dataBinding.lifecycleOwner = this
         setObserver()
         taskReviewRowViewModel.sendRowRequest(TaskType.CREATE)

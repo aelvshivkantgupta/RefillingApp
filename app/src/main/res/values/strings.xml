@@ -27,7 +27,7 @@
     <string name="refilling_qty">Refilling Qty</string>
     <string name="close_task">Close Task</string>
     <string name="edit_task">Edit Task</string>
-    <string name="welcome_user">Welcome User,</string>
+    <string name="welcome_user">Welcome,&#160;</string>
 
     <string name="err_login">Please enter user name</string>
     <string name="err_pwd">Please Enter a Password</string>
@@ -36,6 +36,7 @@
     <string name="search_row_no">Search Row No</string>
     <string name="sort_by">Sort By</string>
     <string name="sequence">Sequence</string>
+    <string name="sequence_demand">Sequence/Demand</string>
 
     <string-array name="dashboard">
         <item>Create Task</item>
@@ -45,4 +46,11 @@
         <item>Select FC Row</item>
         <item>Scan Articles</item>
     </string-array>
+    <string name="title_activity_scan_article">ScanArticleActivity</string>
+    <string name="scan_article">Scan Article</string>
+    <string name="enter_ean_or_description">Enter EAN or Description</string>
+    <string name="clear">Clear</string>
+    <string name="login">Login</string>
+    <string name="fc_row">FC Row</string>
+    <string name="search_article">Search Article</string>
 </resources>

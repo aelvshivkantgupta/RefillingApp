@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
+        <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_height"
             android:orientation="horizontal"
@@ -37,7 +37,7 @@
                 android:layout_marginRight="@dimen/_5dp"
                />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

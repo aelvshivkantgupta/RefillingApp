@@ -1,5 +1,5 @@
 package `in`.dmart.enterprise.refilling.model.apimodel.article.request
 
-data class ArticleReq(
+data class CreateTaskArticleReq(
     val rowId: String?
 )
