@@ -34,6 +34,8 @@
     <string name="total_articles">Total Articles</string>
     <string name="go">GO</string>
     <string name="search_row_no">Search Row No</string>
+    <string name="sort_by">Sort By</string>
+    <string name="sequence">Sequence</string>
 
     <string-array name="dashboard">
         <item>Create Task</item>

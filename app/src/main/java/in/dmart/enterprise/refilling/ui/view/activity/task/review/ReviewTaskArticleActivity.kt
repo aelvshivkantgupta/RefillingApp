@@ -26,26 +26,37 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
         super.onCreate(savedInstanceState)
         dataBinding = putContentView(R.layout.activity_review_task_article)
         showActionBar(true)
+        dataBinding.lifecycleOwner = this
+        dataBinding.viewModel = reviewTaskArticleViewModel
         setObserver()
         val row = intent.getParcelableExtra<Row>(Constant.OBJ)
+        setTitle("Row "+row.rowName)
         reviewTaskArticleViewModel.sendArticleRequest(row.rowId!!)
 
     }
     fun setObserver(){
         reviewTaskArticleViewModel.articleList.observe(this, Observer {
+            var drawable = if(reviewTaskArticleViewModel.isAscending) resources.getDrawable(R.drawable.ic_down) else resources.getDrawable(R.drawable.ic_up)
+            dataBinding.upDown.setImageDrawable(drawable)
             setAdapter(it)
         } )
+
     }
 
     fun setAdapter(articleList: List<ReviewTaskArticle>?){
         if (articleList == null || articleList.isEmpty()){
             finish()
         }else {
-            mAdapter = CustomAdapter<ReviewTaskArticleRowBinding, ReviewTaskArticle>(this,
-                R.layout.review_task_article_row,
-                articleList,
-                this)
-            dataBinding.recyclerView.setAdapterToView(mAdapter!!, this, 0)
+            if(mAdapter == null) {
+                mAdapter = CustomAdapter<ReviewTaskArticleRowBinding, ReviewTaskArticle>(this,
+                    R.layout.review_task_article_row,
+                    articleList,
+                    this)
+                dataBinding.recyclerView.setAdapterToView(mAdapter!!, this, 0)
+            }else{
+                mAdapter?.setDataList(articleList)
+                mAdapter?.notifyDataSetChanged()
+            }
         }
     }
 

@@ -10,7 +10,7 @@ data class ReviewTaskArticle(
     val item: String?,
     val itemId: String?,
     val lastRefillingDetails: List<LastRefillingDetail>?,
-    val location: String?,
+    val fixBin: String?,
     val mrp: String?,
     val rowId: String?,
     val rowName: String?,

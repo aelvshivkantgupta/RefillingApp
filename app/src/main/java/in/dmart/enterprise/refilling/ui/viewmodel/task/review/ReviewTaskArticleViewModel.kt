@@ -5,6 +5,7 @@ import `in`.dmart.apilibrary.content.WebServiceClass
 import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.request.ReviewTaskArticleRequest
 import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.response.ReviewTaskArticle
 import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.response.ReviewTaskArticleData
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,6 +17,14 @@ import javax.inject.Inject
 @HiltViewModel
 class ReviewTaskArticleViewModel  @Inject constructor(val webServices: WebServiceClass): ViewModel(){
     private var _articleList = MutableLiveData<List<ReviewTaskArticle>>()
+    private var _isAscending = true
+    val isAscending:Boolean
+        get() = _isAscending
+
+    private var _totalArticles = MutableLiveData<String>()
+    val totalArticles: LiveData<String>
+    get() = _totalArticles
+
     val articleList: LiveData<List<ReviewTaskArticle>>
     get()= _articleList
 
@@ -24,10 +33,12 @@ class ReviewTaskArticleViewModel  @Inject constructor(val webServices: WebServic
     fun sendArticleRequest(rowId:String? = "",ean:String? = ""){
         var reviewTaskArticleReq = ReviewTaskArticleRequest(rowId,ean)
         val reviewTaskArticleData = webServices.getDataFromFile("review_article_list",ReviewTaskArticleData::class.java)
+        _totalArticles.postValue(reviewTaskArticleData.totalArticles)
+        var sortedList = sortArticleList(reviewTaskArticleData.articleList)
         reviewTaskArticleData.articleList?.let {
             for (item in it){
                 if (item.rowId==rowId || item.ean!!.split(",").contains(reviewTaskArticleReq.ean)){
-                    _articleList.postValue(reviewTaskArticleData.articleList)
+                    _articleList.postValue(sortedList)
                     break
                 }else{
                     _articleList.postValue(ArrayList())
@@ -57,5 +68,23 @@ class ReviewTaskArticleViewModel  @Inject constructor(val webServices: WebServic
         }
 
     }
+
+
+    fun onSort(view: View){
+        _articleList.value = sortArticleList(articleList.value)
+    }
+
+    fun sortArticleList(list:List<ReviewTaskArticle>?):List<ReviewTaskArticle>? {
+        _isAscending= !_isAscending!!
+        return if (_isAscending) list?.sortedBy {
+            it.fixBin
+        }?.reversed() else list?.sortedBy {
+            it.fixBin
+        }
+    }
+
+
+
+
 
 }
