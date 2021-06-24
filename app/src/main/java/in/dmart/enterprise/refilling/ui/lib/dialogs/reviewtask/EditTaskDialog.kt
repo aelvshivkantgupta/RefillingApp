@@ -52,7 +52,7 @@ class EditTaskDialog(
         val caseLotQty = dataBinding.etCaselotQty.text.toString().toInteger(0)
         if (caseLotQty > 0 && dataBinding.etReason.text.toString().trim().isNotEmpty()) {
             popupActionListener?.onCreateClick(
-                dataBinding.model,
+                reviewTaskArticle,
                 caseLotQty.toString(),
                 dataBinding.etReason.text.toString()
             )
@@ -75,7 +75,7 @@ class EditTaskDialog(
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val caseLotQty = dataBinding.etCaselotQty.text.toString().toInteger(0)
                 dataBinding.tvCaselot.text =
-                    (caseLotQty * dataBinding.model.caseLotQty.toInteger(0)).toString()
+                    (caseLotQty * reviewTaskArticle.caseLotQty.toInteger(0)).toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {

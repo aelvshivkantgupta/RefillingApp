@@ -35,12 +35,14 @@ class CloseTaskDialog(
 
 
             tvRefillingQty.text =
-                "${model.totalCaselot} Caselot (" + (model.totalCaselot.toInteger(0) * model.caseLotQty.toInteger(
+                "${reviewTaskArticle.totalCaselot} Caselot (" + (reviewTaskArticle.totalCaselot.toInteger(
+                    0
+                ) * reviewTaskArticle.caseLotQty.toInteger(
                     0
                 )) + " Unit)"
 
             btnYes.setOnClickListener {
-                popupActionListener?.onYesClick(model)
+                popupActionListener?.onYesClick(reviewTaskArticle)
                 closeDialog(dialog)
             }
 

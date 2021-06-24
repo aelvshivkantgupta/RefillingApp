@@ -52,7 +52,7 @@ class CreateTaskDialog(
         val caseLotQty = dataBinding.etCaselotQty.text.toString().toInteger(0)
         if (caseLotQty > 0) {
             popupActionListener?.onCreateClick(
-                dataBinding.model,
+                createTaskArticle,
                 caseLotQty.toString(),
                 dataBinding.cbPriority.isChecked
             )
@@ -75,7 +75,7 @@ class CreateTaskDialog(
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val caseLotQty = dataBinding.etCaselotQty.text.toString().toInteger(0)
                 dataBinding.tvCaselot.text =
-                    (caseLotQty * dataBinding.model.caseLotQty.toInteger(0)).toString()
+                    (caseLotQty * createTaskArticle.caseLotQty.toInteger(0)).toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {

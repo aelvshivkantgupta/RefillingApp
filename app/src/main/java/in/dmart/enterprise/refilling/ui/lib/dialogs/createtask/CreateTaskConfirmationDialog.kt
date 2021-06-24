@@ -43,7 +43,7 @@ class CreateTaskConfirmationDialog(
             }
 
             tvCaselot.text =
-                "$enteredCaseLotQty (" + (enteredCaseLotQty * model.caseLotQty.toInteger(
+                "$enteredCaseLotQty (" + (enteredCaseLotQty * createTaskArticle.caseLotQty.toInteger(
                     0
                 )) + " Unit)"
 
