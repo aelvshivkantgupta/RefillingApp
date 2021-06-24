@@ -121,6 +121,8 @@
                         android:backgroundTint="@color/magenta_200"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small_text_size"
+                        android:onClick="onCloseTask"
+                        android:tag="@{model}"
                         />
                     <in.dmart.enterprise.refilling.ui.lib.view.CustomButton
                         android:id="@+id/editTask"
@@ -132,7 +134,9 @@
                         android:textColor="@color/black"
                         android:layout_alignParentRight="true"
                         android:layout_marginLeft="@dimen/_10dp"
-                        android:textSize="@dimen/small_text_size"/>
+                        android:textSize="@dimen/small_text_size"
+                        android:onClick="onEditTask"
+                        android:tag="@{model}"/>
 
                 </LinearLayout>
 

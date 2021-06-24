@@ -53,7 +53,7 @@
     <string name="search_article">Search Article</string>
     <string name="refilling_task">Refilling Task</string>
     <string name="enter_refilling_details">Enter Refilling Details</string>
-    <string name="enter_caselot_qty">Enter Caselot Qty</string>
+    <string name="enter_caselot_qty">Caselot Qty</string>
     <string name="total_qty_ea">Total Qty (EA)</string>
     <string name="high_priority">High Priority</string>
     <string name="cancel">Cancel</string>

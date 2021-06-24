@@ -6,12 +6,15 @@ import `in`.dmart.enterprise.refilling.databinding.ActivityCreateTaskArticleBind
 import `in`.dmart.enterprise.refilling.databinding.CreateTaskArticleRowBinding
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.Row
+import `in`.dmart.enterprise.refilling.ui.lib.Application
 import `in`.dmart.enterprise.refilling.ui.view.activity.BaseActivity
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.AdapterListener
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.CustomAdapter
+import `in`.dmart.enterprise.refilling.ui.lib.dialogs.createtask.CreateTaskDialog
 import `in`.dmart.enterprise.refilling.ui.viewmodel.task.create.CreateTaskArticleViewModel
 import `in`.dmart.enterprise.refilling.util.setAdapterToView
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,9 +60,27 @@ class CreateTaskArticleActivity : BaseActivity<ActivityCreateTaskArticleBinding>
         }
     }
 
+    fun onCreateTask(view: View){
+        var createTaskArticle = view.tag as? CreateTaskArticle
+        CreateTaskDialog(this,createTaskArticle!!,object :CreateTaskDialog.PopupActionListener{
+            override fun onCreateClick(
+                createTaskArticle: CreateTaskArticle,
+                totalCaseLotQty: String,
+                priority: Boolean,
+            ) {
+            }
+
+            override fun onCancelClick() {
+            }
+
+        }).show()
+
+    }
+
     override fun onBindViewHolder(
         holder: CustomAdapter<CreateTaskArticleRowBinding, CreateTaskArticle>.ViewHolder,
         position: Int,
     ) {
+
     }
 }

@@ -8,6 +8,7 @@ import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resons
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.Row
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.AdapterListener
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.CustomAdapter
+import `in`.dmart.enterprise.refilling.ui.lib.dialogs.createtask.CreateTaskDialog
 import `in`.dmart.enterprise.refilling.ui.view.activity.BaseActivity
 import `in`.dmart.enterprise.refilling.ui.viewmodel.task.create.CreateTaskArticleViewModel
 import `in`.dmart.enterprise.refilling.ui.viewmodel.task.create.ScanArticleViewModel
@@ -56,6 +57,22 @@ class ScanArticleActivity : BaseActivity<ActivityScanArticleBinding>(),AdapterLi
 
     }
 
+    fun onCreateTask(view: View){
+        var createTaskArticle = view.tag as? CreateTaskArticle
+        CreateTaskDialog(this,createTaskArticle!!,object : CreateTaskDialog.PopupActionListener{
+            override fun onCreateClick(
+                createTaskArticle: CreateTaskArticle,
+                totalCaseLotQty: String,
+                priority: Boolean,
+            ) {
+            }
+
+            override fun onCancelClick() {
+            }
+
+        }).show()
+
+    }
 
     override fun onBindViewHolder(
         holder: CustomAdapter<CreateTaskArticleRowBinding, CreateTaskArticle>.ViewHolder,

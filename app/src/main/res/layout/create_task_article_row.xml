@@ -180,7 +180,9 @@
                android:text="@string/create_task"
                android:backgroundTint="@color/magenta_200"
                android:textColor="@color/black"
-               android:layout_marginTop="@dimen/_5dp"/>
+               android:layout_marginTop="@dimen/_5dp"
+               android:onClick="onCreateTask"
+               android:tag="@{model}"/>
        </LinearLayout>
     </RelativeLayout>
 </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
