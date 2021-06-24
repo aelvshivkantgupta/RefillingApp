@@ -24,8 +24,6 @@
     <string name="demand">Demand</string>
     <string name="caselot">Caselot</string>
     <string name="create_task">Create Task</string>
-    <string name="refilling_qty">Refilling Qty</string>
-    <string name="close_task">Close Task</string>
     <string name="edit_task">Edit Task</string>
     <string name="welcome_user">Welcome,&#160;</string>
 
@@ -53,4 +51,22 @@
     <string name="login">Login</string>
     <string name="fc_row">FC Row</string>
     <string name="search_article">Search Article</string>
+    <string name="refilling_task">Refilling Task</string>
+    <string name="enter_refilling_details">Enter Refilling Details</string>
+    <string name="enter_caselot_qty">Enter Caselot Qty</string>
+    <string name="total_qty_ea">Total Qty (EA)</string>
+    <string name="high_priority">High Priority</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
+    <string name="task_created_successfully">Task Created Successfully</string>
+    <string name="caselot_qty">Caselot Qty</string>
+    <string name="priority">Priority</string>
+    <string name="re_enter_task_details">Re-enter Task Details</string>
+    <string name="reason_for_change">Reason for change *</string>
+    <string name="proceed">Proceed</string>
+    <string name="close_task">Close Task</string>
+    <string name="do_you_want_to_close_the_task">Do you want to close the task?</string>
+    <string name="refilling_qty">Refilling Qty</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 </resources>

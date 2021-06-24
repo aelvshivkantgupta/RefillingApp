@@ -12,27 +12,26 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.textfield.TextInputEditText
 
 fun <DataBinding : ViewDataBinding, ModelType : Any> RecyclerView.setAdapterToView(
-        mAdapter: CustomAdapter<DataBinding, ModelType>,
-        context: Context, divider:Int=0
-    ){
-        val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-        layoutManager = mLayoutManager
-        // adding inbuilt divider line
-        //addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-        addItemDecoration(DividerItemDecoration(context, divider))
+    mAdapter: CustomAdapter<DataBinding, ModelType>,
+    context: Context, divider: Int = 0
+) {
+    val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
+    layoutManager = mLayoutManager
+    // adding inbuilt divider line
+    //addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+    addItemDecoration(DividerItemDecoration(context, divider))
 
-        // adding custom divider line with padding 16dp
-        // recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
-        itemAnimator = DefaultItemAnimator()
-        adapter = mAdapter
-    }
+    // adding custom divider line with padding 16dp
+    // recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
+    itemAnimator = DefaultItemAnimator()
+    adapter = mAdapter
+}
 
- fun EditText.searchByRowName(searchButton: Button,adapter:CustomAdapter<*,*>){
-     searchButton.setOnClickListener(View.OnClickListener {
-         adapter?.filter(text.toString().trim(), arrayOf("rowName"))
+fun EditText.searchByRowName(searchButton: Button, adapter: CustomAdapter<*, *>) {
+    searchButton.setOnClickListener(View.OnClickListener {
+        adapter?.filter(text.toString().trim(), arrayOf("rowName"))
     })
     addTextChangedListener(object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -49,4 +48,12 @@ fun <DataBinding : ViewDataBinding, ModelType : Any> RecyclerView.setAdapterToVi
         }
 
     })
+}
+
+fun String?.toInteger(default: Int): Int {
+    return try {
+        this?.toInt() ?: default
+    } catch (e: Exception) {
+        default
+    }
 }

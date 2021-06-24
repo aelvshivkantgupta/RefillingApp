@@ -4,7 +4,7 @@ import `in`.dmart.apilibrary.content.ApiResponse
 import `in`.dmart.apilibrary.content.WebServiceClass
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticleData
-import `in`.dmart.enterprise.refilling.model.apimodel.article.request.CreateTaskArticleReq
+import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.request.CreateTaskArticleReq
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

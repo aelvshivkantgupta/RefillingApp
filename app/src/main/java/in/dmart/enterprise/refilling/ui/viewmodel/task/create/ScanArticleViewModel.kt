@@ -5,7 +5,6 @@ import `in`.dmart.apilibrary.content.WebServiceClass
 import `in`.dmart.enterprise.refilling.R
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticleData
-import `in`.dmart.enterprise.refilling.model.apimodel.article.request.CreateTaskArticleReq
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.request.ScanArticleRequest
 import `in`.dmart.enterprise.refilling.ui.lib.Application
 import `in`.dmart.enterprise.refilling.util.AppUtil
