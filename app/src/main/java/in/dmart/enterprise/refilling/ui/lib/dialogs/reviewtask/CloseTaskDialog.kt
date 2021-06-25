@@ -18,7 +18,7 @@ class CloseTaskDialog(
 
     @SuppressLint("SetTextI18n")
     public fun show() {
-        val dialog = Dialog(context)
+        val dialog = Dialog(context, R.style.Theme_Dialog)
         val dataBinding = DataBindingUtil.inflate<CloseTaskDialogBinding>(
             dialog.layoutInflater,
             R.layout.close_task_dialog,

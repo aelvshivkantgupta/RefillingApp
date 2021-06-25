@@ -21,7 +21,7 @@ class CreateTaskConfirmationDialog(
 
     @SuppressLint("SetTextI18n")
     public fun show() {
-        val dialog = Dialog(context)
+        val dialog = Dialog(context, R.style.Theme_Dialog)
         val dataBinding = DataBindingUtil.inflate<CreateTaskConfirmationDialogBinding>(
             dialog.layoutInflater,
             R.layout.create_task_confirmation_dialog,

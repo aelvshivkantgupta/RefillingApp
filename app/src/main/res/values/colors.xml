@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="magenta_100">#FFCCBC</color>
+
+    <color name="dialog_btn">@color/magenta_700</color>
 </resources>

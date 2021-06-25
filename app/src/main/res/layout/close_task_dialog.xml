@@ -62,6 +62,7 @@
             android:text="@{model.itemId}"
             app:layout_constraintStart_toEndOf="@id/label_item_id"
             app:layout_constraintTop_toTopOf="@id/label_item_id"
+            app:layout_constraintBottom_toBottomOf="@id/label_item_id"
             tools:text="3224558"
             tools:ignore="RtlCompat" />
 
@@ -81,6 +82,7 @@
             android:text="@{model.description}"
             app:layout_constraintStart_toEndOf="@id/label_item_name"
             app:layout_constraintTop_toTopOf="@id/label_item_name"
+            app:layout_constraintBottom_toBottomOf="@id/label_item_name"
             tools:text="Quaker Oats"
             tools:ignore="RtlCompat" />
 
@@ -99,6 +101,7 @@
             android:layout_marginStart="@dimen/_10dp"
             app:layout_constraintStart_toEndOf="@id/label_refilling_qty"
             app:layout_constraintTop_toTopOf="@id/label_refilling_qty"
+            app:layout_constraintBottom_toBottomOf="@id/label_refilling_qty"
             tools:text="4 Caselot (40 Unit)"
             tools:ignore="RtlCompat" />
 
@@ -107,9 +110,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/no"
-            android:layout_marginStart="@dimen/_5dp"
-            android:layout_marginEnd="@dimen/_5dp"
             android:layout_marginTop="@dimen/l_margin"
+            android:background="@color/dialog_btn"
             app:layout_constraintTop_toBottomOf="@id/label_refilling_qty"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_yes" />
@@ -119,11 +121,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/yes"
-            android:layout_marginStart="@dimen/_5dp"
-            android:layout_marginEnd="@dimen/_5dp"
+            android:layout_marginStart="1dp"
+            android:background="@color/dialog_btn"
             app:layout_constraintTop_toTopOf="@id/btn_no"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_no" />
+            app:layout_constraintStart_toEndOf="@id/btn_no"
+            tools:ignore="RtlCompat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

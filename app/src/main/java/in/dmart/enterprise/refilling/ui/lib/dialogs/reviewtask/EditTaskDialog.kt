@@ -19,7 +19,7 @@ class EditTaskDialog(
 ) {
 
     public fun show() {
-        val dialog = Dialog(context)
+        val dialog = Dialog(context, R.style.Theme_Dialog)
         val dataBinding = DataBindingUtil.inflate<EditTaskDialogBinding>(
             dialog.layoutInflater,
             R.layout.edit_task_dialog,
@@ -74,7 +74,7 @@ class EditTaskDialog(
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val caseLotQty = dataBinding.etCaselotQty.text.toString().toInteger(0)
-                dataBinding.tvCaselot.text =
+                dataBinding.tvTotalQty.text =
                     (caseLotQty * reviewTaskArticle.caseLotQty.toInteger(0)).toString()
             }
 

@@ -18,8 +18,7 @@
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/refilling_task"
             android:textColor="#fff"
@@ -29,8 +28,7 @@
             android:paddingBottom="10dp"
             android:background="@color/magenta_700"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
             android:id="@+id/label_refilling_details"
@@ -62,6 +60,7 @@
             android:text="@{model.description}"
             app:layout_constraintStart_toEndOf="@id/label_item_name"
             app:layout_constraintTop_toTopOf="@id/label_item_name"
+            app:layout_constraintBottom_toBottomOf="@id/label_item_name"
             tools:text="Quaker Oats"
             tools:ignore="RtlCompat" />
 
@@ -81,6 +80,7 @@
             android:text="@{model.mrp}"
             app:layout_constraintStart_toEndOf="@id/label_mrp"
             app:layout_constraintTop_toTopOf="@id/label_mrp"
+            app:layout_constraintBottom_toBottomOf="@id/label_mrp"
             tools:text="500"
             tools:ignore="RtlCompat" />
 
@@ -99,6 +99,7 @@
             android:layout_marginStart="@dimen/_10dp"
             app:layout_constraintStart_toEndOf="@id/label_caselot_qty"
             app:layout_constraintTop_toTopOf="@id/label_caselot_qty"
+            app:layout_constraintBottom_toBottomOf="@id/label_caselot_qty"
             tools:text="0"
             tools:ignore="RtlCompat" />
 
@@ -117,6 +118,7 @@
             android:layout_marginStart="@dimen/_10dp"
             app:layout_constraintStart_toEndOf="@id/label_priority"
             app:layout_constraintTop_toTopOf="@id/label_priority"
+            app:layout_constraintBottom_toBottomOf="@id/label_priority"
             tools:text="High"
             tools:ignore="RtlCompat" />
 

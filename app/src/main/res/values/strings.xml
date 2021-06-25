@@ -69,4 +69,6 @@
     <string name="refilling_qty">Refilling Qty</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+
+    <string name="digits_number">1234567890</string>
 </resources>
