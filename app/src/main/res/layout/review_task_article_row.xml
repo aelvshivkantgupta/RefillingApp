@@ -141,6 +141,15 @@
                 </LinearLayout>
 
             </LinearLayout>
+            <ImageView
+                android:layout_width="@dimen/small_icon_size"
+                android:layout_height="@dimen/small_icon_size"
+                android:layout_alignParentRight="true"
+                android:onClick="onInfo"
+                android:src="@mipmap/info"
+                android:tag="@{model}"
+                android:visibility="visible" />
+
         </RelativeLayout>
     </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
 </layout>

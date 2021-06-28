@@ -32,6 +32,7 @@
            android:layout_toRightOf="@+id/productImage"
            android:paddingLeft="@dimen/_10dp"
            >
+
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
@@ -46,6 +47,8 @@
                android:layout_height="wrap_content"
                tools:text="@{model.itemId}"/>
            </LinearLayout>
+
+
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
@@ -184,6 +187,16 @@
                android:onClick="onCreateTask"
                android:tag="@{model}"/>
        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/small_icon_size"
+            android:layout_height="@dimen/small_icon_size"
+            android:layout_alignParentRight="true"
+            android:onClick="onInfo"
+            android:src="@mipmap/info"
+            android:tag="@{model}"
+            android:visibility="visible" />
+
     </RelativeLayout>
 </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
 </layout>

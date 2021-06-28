@@ -71,4 +71,9 @@
     <string name="yes">Yes</string>
 
     <string name="digits_number">1234567890</string>
+    <string name="last_refilling_details">Last Refilling Details</string>
+    <string name="user">User</string>
+    <string name="qty">Qty</string>
+    <string name="time">Time</string>
+    <string name="comment">Comment</string>
 </resources>

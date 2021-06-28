@@ -3,20 +3,22 @@ package `in`.dmart.enterprise.refilling.ui.view.activity.task.review
 import `in`.dmart.enterprise.refilling.R
 import `in`.dmart.enterprise.refilling.constant.Constant
 import `in`.dmart.enterprise.refilling.databinding.ActivityReviewTaskArticleBinding
+import `in`.dmart.enterprise.refilling.databinding.ReviewArticleInfoBinding
 import `in`.dmart.enterprise.refilling.databinding.ReviewTaskArticleRowBinding
-import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle
+import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.response.LastRefillingDetail
 import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.response.ReviewTaskArticle
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.Row
 import `in`.dmart.enterprise.refilling.ui.view.activity.BaseActivity
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.AdapterListener
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.CustomAdapter
-import `in`.dmart.enterprise.refilling.ui.lib.dialogs.createtask.CreateTaskDialog
 import `in`.dmart.enterprise.refilling.ui.lib.dialogs.reviewtask.CloseTaskDialog
 import `in`.dmart.enterprise.refilling.ui.lib.dialogs.reviewtask.EditTaskDialog
+import `in`.dmart.enterprise.refilling.ui.lib.popup.PopupView
 import `in`.dmart.enterprise.refilling.ui.viewmodel.task.review.ReviewTaskArticleViewModel
 import `in`.dmart.enterprise.refilling.util.setAdapterToView
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +41,7 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
         reviewTaskArticleViewModel.sendArticleRequest(row.rowId!!)
 
     }
-    fun setObserver(){
+    private fun setObserver(){
         reviewTaskArticleViewModel.articleList.observe(this, Observer {
             var drawable = if(reviewTaskArticleViewModel.hasDataInAscendingOrder) resources.getDrawable(R.drawable.ic_down) else resources.getDrawable(R.drawable.ic_up)
             dataBinding.upDown.setImageDrawable(drawable)
@@ -48,7 +50,7 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
 
     }
 
-    fun setAdapter(articleList: List<ReviewTaskArticle>?){
+    private fun setAdapter(articleList: List<ReviewTaskArticle>?){
         if (articleList == null || articleList.isEmpty()){
             finish()
         }else {
@@ -63,6 +65,15 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
                 mAdapter?.notifyDataSetChanged()
             }
         }
+    }
+
+    fun onInfo(view: View){
+        var reviewTaskArticle = view.tag as? ReviewTaskArticle
+        reviewTaskArticle?.lastRefillingDetails?.let {
+            PopupView<ReviewArticleInfoBinding, LastRefillingDetail>(R.layout.review_article_info,
+                reviewTaskArticle?.lastRefillingDetails?.get(0)!!).showPopupWindow(view.parent as ViewGroup)
+        }
+
     }
 
     fun onEditTask(view: View){
