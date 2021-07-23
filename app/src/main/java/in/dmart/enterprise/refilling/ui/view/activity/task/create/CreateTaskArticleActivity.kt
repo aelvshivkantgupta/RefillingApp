@@ -19,6 +19,7 @@ import `in`.dmart.enterprise.refilling.util.setAdapterToView
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,10 @@ class CreateTaskArticleActivity : BaseActivity<ActivityCreateTaskArticleBinding>
         val row = intent.getParcelableExtra<Row>(Constant.OBJ)
         setTitle("Row "+row.rowName)
         createTaskArticleViewModel.sendArticleRequest(row.rowId!!)
+
+        dataBinding.sinnerSortBy.setAdapter(ArrayAdapter.createFromResource(this,
+            R.array.sortBy,
+            R.layout.spinner_item));
     }
 
     private fun setObserver(){

@@ -112,8 +112,8 @@ dependencies {
     //Dagger
     implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     kapt "androidx.hilt:hilt-compiler:1.0.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
 
 
     // Import the Firebase BoM

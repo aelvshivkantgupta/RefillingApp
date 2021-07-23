@@ -26,6 +26,8 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(),AdapterListen
         super.onCreate(savedInstanceState)
         showActionBar(true)
         dataBinding = putContentView(R.layout.activity_dashboard)
+        showLogo(View.VISIBLE)
+        showBackButton(false)
         setTitle("AAA0-Kanjur FC")
         setupObserver()
     }

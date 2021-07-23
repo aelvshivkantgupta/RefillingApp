@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -13,7 +14,9 @@
         android:layout_marginLeft="@dimen/_10dp"
         android:layout_marginRight="@dimen/_10dp"
         android:layout_marginTop="@dimen/_5dp">
-        <RelativeLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/_10dp">
@@ -22,134 +25,180 @@
                 android:id="@+id/productImage"
                 android:layout_width="@dimen/icon_size"
                 android:layout_height="@dimen/icon_size"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_5dp"
                 android:src="@mipmap/ic_launcher"
-                android:layout_alignParentLeft="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblItemId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:text="@string/item"
+                app:layout_constraintStart_toEndOf="@id/productImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/itemId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                app:layout_constraintStart_toEndOf="@id/lblItemId"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/info"
+                android:text="@{model.itemId}"
+                app:layout_constraintBaseline_toBaselineOf="@id/lblItemId"
                 />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblDescription"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:text="@string/description"
+                app:layout_constraintStart_toEndOf="@id/productImage"
+                app:layout_constraintTop_toBottomOf="@id/itemId" />
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/lblDescription"
+                app:layout_constraintTop_toBottomOf="@id/itemId"
+                android:text="@{model.description}"
+                app:layout_constraintBaseline_toBaselineOf="@id/lblDescription"
+
+                />
+
+
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:text="@string/location"
+                app:layout_constraintStart_toEndOf="@id/productImage"
+                app:layout_constraintTop_toBottomOf="@id/description" />
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/lblLocation"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                tools:text="@{model.fixBin}"
+                app:layout_constraintBaseline_toBaselineOf="@id/lblLocation"/>
+
+
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblMrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:text="@string/mrp"
+                app:layout_constraintStart_toEndOf="@id/productImage"
+                app:layout_constraintTop_toBottomOf="@id/lblLocation" />
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/mrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/ligth_green_900"
+                app:layout_constraintStart_toEndOf="@id/lblLocation"
+                app:layout_constraintTop_toBottomOf="@id/lblLocation"
+                android:text="@{model.mrp}"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/lblMrp"/>
+
+
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblRefillingQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:text="@string/refilling_qty"
+                app:layout_constraintStart_toEndOf="@id/productImage"
+                app:layout_constraintTop_toBottomOf="@id/lblMrp" />
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/refillingQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/ligth_green_900"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/lblRefillingQty"
+                app:layout_constraintTop_toBottomOf="@id/lblMrp"
+                android:text="@{model.totalCaselot}"
+                app:layout_constraintBaseline_toBaselineOf="@id/lblRefillingQty"
+                />
+
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomButton
+                android:id="@+id/closeTask"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:backgroundTint="@color/magenta_200"
+                android:onClick="onCloseTask"
+                android:tag="@{model}"
+                android:text="@string/close_task"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small_text_size"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toEndOf="@id/productImage"
+                app:layout_constraintTop_toBottomOf="@id/lblRefillingQty" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_toRightOf="@+id/productImage"
-                android:paddingLeft="@dimen/_10dp"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/item"
-                        />
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                        android:id="@+id/itemId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@{model.itemId}"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/description"
-                        />
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                        android:id="@+id/description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@{model.description}"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/location"
-                        />
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                        android:id="@+id/location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@{model.fixBin}"/>
-                </LinearLayout>
+                app:layout_constraintGuide_percent="0.65"
+                />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/mrp"
-                        />
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                        android:id="@+id/mrp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@{model.mrp}"
-                        android:textColor="@color/ligth_green_900"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/refilling_qty"
-                        />
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                        android:id="@+id/refillingQty"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@{model.totalCaselot}"
-                        android:textColor="@color/ligth_green_900"/>
-                </LinearLayout>
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomButton
+                android:id="@+id/editTask"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:backgroundTint="@color/magenta_200"
+                android:onClick="onEditTask"
+                android:tag="@{model}"
+                android:text="@string/edit_task"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/lblRefillingQty" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5dp">
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomButton
-                        android:id="@+id/closeTask"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/task_btn_height"
-                        android:layout_weight="1"
-                        android:text="@string/close_task"
-                        android:backgroundTint="@color/magenta_200"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/small_text_size"
-                        android:onClick="onCloseTask"
-                        android:tag="@{model}"
-                        />
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomButton
-                        android:id="@+id/editTask"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/task_btn_height"
-                        android:layout_weight="1"
-                        android:text="@string/edit_task"
-                        android:backgroundTint="@color/magenta_200"
-                        android:textColor="@color/black"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginLeft="@dimen/_10dp"
-                        android:textSize="@dimen/small_text_size"
-                        android:onClick="onEditTask"
-                        android:tag="@{model}"/>
 
-                </LinearLayout>
-
-            </LinearLayout>
             <ImageView
+                android:id="@+id/info"
                 android:layout_width="@dimen/small_icon_size"
                 android:layout_height="@dimen/small_icon_size"
-                android:layout_alignParentRight="true"
                 android:onClick="onInfo"
                 android:src="@mipmap/info"
                 android:tag="@{model}"
-                android:visibility="visible" />
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
 </layout>

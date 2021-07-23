@@ -3,27 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <data>
+        <import type="in.dmart.enterprise.refilling.BuildConfig" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="in.dmart.enterprise.dad.activity.SplashAcitivty"
-      >
+        tools:context="in.dmart.enterprise.dad.activity.SplashAcitivty">
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:src="@drawable/splash" />
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/splash"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
             android:id="@+id/txtVersion"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/_5dp"
+            android:layout_marginStart="@dimen/_5dp"
+            android:layout_marginLeft="@dimen/_5dp"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_marginEnd="@dimen/_5dp"
+            android:layout_marginRight="@dimen/_5dp"
+            android:layout_marginBottom="@dimen/_5dp"
             android:gravity="right"
-            android:text=""
-            android:textSize="@dimen/txt_18sp" />
-    </RelativeLayout>
+            android:text="@{`Version : `.concat(BuildConfig.VERSION_NAME).concat(` (`).concat(BuildConfig.BUILD_TYPE.toUpperCase()).concat(`)`)}"
+            android:textSize="@dimen/txt_18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

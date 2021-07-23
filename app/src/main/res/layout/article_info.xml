@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -7,77 +8,102 @@
             name="model"
             type="in.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.LastRefillingDetail" />
     </data>
+
     <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/_5dp">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_5dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_5dp"
-                >
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:text="@string/last_refilling_details"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                        android:id="@+id/description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/last_refilling_details"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/medium_text_size"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/user"
-                        />
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                        android:id="@+id/user"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@{model.user}"/>
-                </LinearLayout>
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:text="@string/user"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description" />
 
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="@dimen/_5dp"
+                app:layout_constraintStart_toEndOf="@id/lblUser"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                android:text="@{model.user}"
+                app:layout_constraintBaseline_toBaselineOf="@id/lblUser"
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        >
-                        <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/qty"
-                            />
-                        <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                            android:id="@+id/qty"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:text="@{model.qty}"
-                           />
-                    </LinearLayout>
+                />
 
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:text="@string/qty"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lblUser" />
 
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/qty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                app:layout_constraintStart_toEndOf="@id/lblQty"
+                app:layout_constraintTop_toBottomOf="@id/lblUser"
+                android:text="@{model.qty}"
+                app:layout_constraintBaseline_toBaselineOf="@id/lblQty"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/time"
-                        />
-                    <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                        android:id="@+id/time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@{model.time}"
-                    />
-                </LinearLayout>
+                />
 
-            </LinearLayout>
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:text="@string/time"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lblQty" />
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                app:layout_constraintStart_toEndOf="@id/lblTime"
+                app:layout_constraintTop_toBottomOf="@id/lblQty"
+                android:text="@{model.time}"
+                app:layout_constraintBaseline_toBaselineOf="@id/lblTime"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
 </layout>

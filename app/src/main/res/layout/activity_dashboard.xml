@@ -9,39 +9,54 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/userInfoLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5dp"
-            android:paddingTop="@dimen/_10dp"
+        <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_height"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_marginRight="@dimen/_10dp"
+            app:cardBackgroundColor="@color/magenta_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
         <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+            android:id="@+id/customTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/welcome_user"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/large_text_size"
+           />
+
+        <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+            android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_user"
-            android:textSize="@dimen/large_text_size"
+            android:text="Manish Modi"
             android:textColor="@color/blue"
-            android:layout_marginLeft="@dimen/_10dp"/>
-            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                android:id="@+id/userName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Manish Modi"
-                android:textSize="@dimen/medium_text_size"
-                android:textColor="@color/blue"/>
-        </LinearLayout>
-
+            android:textSize="@dimen/medium_text_size"
+             />
+            </LinearLayout>
+        </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/_10dp"
-           />
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

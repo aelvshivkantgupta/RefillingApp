@@ -44,6 +44,10 @@
         <item>Select FC Row</item>
         <item>Scan Articles</item>
     </string-array>
+    <string-array name="sortBy">
+        <item>Sequence</item>
+        <item>Demand</item>
+    </string-array>
     <string name="title_activity_scan_article">ScanArticleActivity</string>
     <string name="scan_article">Scan Article</string>
     <string name="enter_ean_or_description">Enter EAN or Description</string>

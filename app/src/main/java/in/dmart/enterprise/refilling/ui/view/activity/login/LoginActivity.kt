@@ -11,6 +11,7 @@ import android.text.TextUtils
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import `in`.dmart.enterprise.refilling.apiutil.Status
+import android.view.View
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Objects
 
@@ -24,9 +25,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         dataBinding = putContentView(R.layout.activity_login)
         dataBinding.lifecycleOwner = this
         dataBinding.loginViewModel = loginViewModel
+        showLogo(View.VISIBLE)
         setTitle(resources.getString(R.string.login))
         setLoginFieldObserver()
         setLoginResponseObserver()
+        showBackButton(false)
+
     }
 
     private fun setLoginFieldObserver() {

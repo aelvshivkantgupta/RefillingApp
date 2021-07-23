@@ -9,11 +9,11 @@
         <import type="in.dmart.enterprise.refilling.BuildConfig" />
 
 
-            <variable
-                name="loginViewModel"
-                type="in.dmart.enterprise.refilling.ui.viewmodel.login.LoginViewModel" />
+        <variable
+            name="loginViewModel"
+            type="in.dmart.enterprise.refilling.ui.viewmodel.login.LoginViewModel" />
 
-         </data>
+    </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -22,92 +22,103 @@
         android:fillViewport="true"
         android:background="@mipmap/background">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/relativeLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_margin="@dimen/l_margin"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/_10dp"
 
-                android:fadingEdgeLength="@dimen/l_margin">
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:src="@mipmap/ic_launcher" />
 
-                <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUserName"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginLeft="34dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="34dp"
+                android:layout_marginRight="34dp"
+                android:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logo"
+                tools:targetApi="lollipop">
+
+                <in.dmart.enterprise.refilling.ui.lib.view.CustomEditText
+                    android:id="@+id/txtUserName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="@dimen/_10dp">
+                    android:layout_height="match_parent"
+                    android:hint="@string/hint_user_name"
+                    android:text="@={loginViewModel.userName}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilUserName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10dp"
-                        android:layout_marginRight="@dimen/_10dp"
-                        android:elevation="5dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPassword"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginLeft="34dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="34dp"
+                android:layout_marginRight="34dp"
+                android:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilUserName"
+                tools:targetApi="lollipop">
 
-                        <in.dmart.enterprise.refilling.ui.lib.view.CustomEditText
-                            android:id="@+id/txtUserName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hint_user_name"
-                            android:text="@={loginViewModel.userName}"
-                           />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10dp"
-                        android:layout_marginTop="@dimen/_10dp"
-                        android:layout_marginRight="@dimen/_10dp"
-                        android:elevation="5dp">
-
-                        <in.dmart.enterprise.refilling.ui.lib.view.CustomEditText
-                            android:id="@+id/txtPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hint_password"
-                            android:inputType="textPassword"
-                            android:text="@={loginViewModel.password}"
-                           >
-
-                        </in.dmart.enterprise.refilling.ui.lib.view.CustomEditText>
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
-
-                <in.dmart.enterprise.refilling.ui.lib.view.CustomButton
-                    android:id="@+id/btnLogin"
+                <in.dmart.enterprise.refilling.ui.lib.view.CustomEditText
+                    android:id="@+id/txtPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/height"
-                    android:text="@string/btn_login_txt"
-                    android:textSize="18sp"
-                    android:layout_margin="@dimen/_10dp"
-                    android:onClick="@{(v) -> loginViewModel.onLoginClick(v)}"
-                    />
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:text="@={loginViewModel.password}">
+
+                </in.dmart.enterprise.refilling.ui.lib.view.CustomEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomButton
+                android:id="@+id/btnLogin"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginLeft="34dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="34dp"
+                android:layout_marginRight="34dp"
+                android:onClick="@{(v) -> loginViewModel.onLoginClick(v)}"
+                android:text="@string/btn_login_txt"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
 
 
             <TextView
+                android:id="@+id/version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="@{`Version : `.concat(BuildConfig.VERSION_NAME).concat(` (`).concat(BuildConfig.BUILD_TYPE.toUpperCase()).concat(`)`)}"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Version : 1.7.5 (PROD)" />
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
 

@@ -10,55 +10,97 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-       >
-        <RelativeLayout
+        android:layout_height="match_parent">
+
+    <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
+        android:id="@+id/customCardView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_marginRight="@dimen/_10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_10dp"
-            android:layout_marginLeft="@dimen/_10dp"
-            android:layout_marginBottom="@dimen/_5dp">
-            <LinearLayout
+            android:layout_height="match_parent">
+
+
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblSortBy"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/lbl_height"
+                android:layout_marginStart="@dimen/_10dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:gravity="center"
+                android:text="@string/sort_by"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/sinnerSortBy"
+                android:layout_width="110dp"
+                android:layout_height="@dimen/lbl_height"
+                android:entries="@array/sortBy"
+                android:padding="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/lblSortBy"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+
+            <ImageView
+                android:id="@+id/upDown"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/lbl_height"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_5dp"
                 android:onClick="@{(v) -> viewModel.onSort(v)}"
-                android:gravity="center_vertical">
-                <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sort_by"/>
-                <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sequence_demand"/>
-                <ImageView
-                    android:id="@+id/upDown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_up"/>
-            </LinearLayout>
-            <LinearLayout
+                android:src="@drawable/ic_up"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sinnerSortBy"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                android:id="@+id/lblTotalArticles"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true">
-                <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/total_articles"/>
-                <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                    android:id="@+id/totalArticles"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.totalArticles}"/>
-            </LinearLayout>
-        </RelativeLayout>
+                android:layout_height="@dimen/lbl_height"
+                android:gravity="center"
+                android:text="@string/total_articles"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/totalArticles"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                android:id="@+id/totalArticles"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/lbl_height"
+                android:layout_marginEnd="@dimen/_10dp"
+                android:layout_marginRight="@dimen/_10dp"
+                android:gravity="center"
+                android:text="@{viewModel.totalArticles}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customCardView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

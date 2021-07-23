@@ -52,14 +52,14 @@
 
         <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
             android:id="@+id/tv_item_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10dp"
             android:text="@{model.description}"
             app:layout_constraintStart_toEndOf="@id/label_item_name"
             app:layout_constraintTop_toTopOf="@id/label_item_name"
             app:layout_constraintBottom_toBottomOf="@id/label_item_name"
-            tools:text="Quaker Oats"
+            tools:text="Quaker Oat"
             tools:ignore="RtlCompat" />
 
         <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
@@ -80,7 +80,10 @@
             app:layout_constraintTop_toTopOf="@id/label_mrp"
             app:layout_constraintBottom_toBottomOf="@id/label_mrp"
             tools:text="500"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:textStyle="bold"
+            android:textColor="@color/ligth_green_900"
+            />
 
         <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
             android:id="@+id/label_caselot"
@@ -102,7 +105,10 @@
             app:layout_constraintTop_toTopOf="@id/label_caselot"
             app:layout_constraintBottom_toBottomOf="@id/label_caselot"
             tools:text="20"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:textColor="@color/ligth_green_900"
+            android:textStyle="bold"
+            />
 
         <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
             android:id="@+id/label_short"
@@ -122,6 +128,8 @@
             app:layout_constraintTop_toTopOf="@id/label_short"
             app:layout_constraintBottom_toBottomOf="@id/label_short"
             tools:text="0"
+            android:textStyle="bold"
+            android:textColor="@color/ligth_green_900"
             tools:ignore="RtlCompat" />
 
         <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
@@ -144,7 +152,10 @@
             app:layout_constraintTop_toTopOf="@id/label_demand"
             app:layout_constraintBottom_toBottomOf="@id/label_demand"
             tools:text="100"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:textStyle="bold"
+            android:textColor="@color/magenta_700"
+            />
 
         <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
             android:id="@+id/label_caselot_qty"
