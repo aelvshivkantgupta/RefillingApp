@@ -13,10 +13,12 @@ class SharedPref  @Inject constructor(@ApplicationContext private val context: C
 
     private val preferences: SharedPreferences = context.getSharedPreferences("Refilling", Context.MODE_PRIVATE)
 
+    @SuppressLint("ApplySharedPref")
     fun putString(key: String?, data: String) {
         preferences.edit().putString(key, data.trim { it <= ' ' }).commit()
     }
 
+    @SuppressLint("ApplySharedPref")
     fun putBoolean(key: String?, data: Boolean) {
         preferences.edit().putBoolean(key, data).commit()
     }
@@ -45,10 +47,11 @@ class SharedPref  @Inject constructor(@ApplicationContext private val context: C
 
     companion object {
         const val ADV_ID = "google_adv_id"
-        private const val USERNAME = "UserName"
-        private const val USERPWD = "UserPwd"
-        private const val USERPIN = "UserPIN"
-        private const val USERACCESS = "UserAccess"
+        public const val USERNAME = "UserName"
+        public const val USERID = "UserId"
+        public const val USERPWD = "UserPwd"
+        public const val USERPIN = "UserPIN"
+        public const val USERACCESS = "UserAccess"
         const val REMOTE_CONFIG = "remoteConfig"
     }
 

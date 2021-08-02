@@ -20,8 +20,20 @@ class CustomDialog(context: Context?) : Dialog(context!!) {
         setCancelable(false)
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-        val animatedGifImageView = findViewById<View>(R.id.animatedGifImageView) as AnimatedGifImageView
-        animatedGifImageView.setAnimatedGif(R.drawable.loadingcircle,
-                AnimatedGifImageView.TYPE.STREACH_TO_FIT)
+        val animatedGifImageView =
+            findViewById<View>(R.id.animatedGifImageView) as AnimatedGifImageView
+        animatedGifImageView.setAnimatedGif(
+            R.drawable.loadingcircle,
+            AnimatedGifImageView.TYPE.STREACH_TO_FIT
+        )
+    }
+
+    public fun finish() {
+        try {
+            if (isShowing) {
+                dismiss()
+            }
+        } catch (e: Exception) {
+        }
     }
 }
