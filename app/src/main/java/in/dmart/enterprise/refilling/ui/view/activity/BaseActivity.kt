@@ -60,17 +60,40 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
         mErrorString = SparseIntArray()
         myFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        FireBaseUtil.sendEvent(myFirebaseAnalytics, FireBaseUtil.getScreenViewEvent(javaClass.simpleName), javaClass.simpleName, FireBaseUtil.EVENT_TYPE_DISPLAY)
+        FireBaseUtil.sendEvent(myFirebaseAnalytics,
+            FireBaseUtil.getScreenViewEvent(javaClass.simpleName),
+            javaClass.simpleName,
+            FireBaseUtil.EVENT_TYPE_DISPLAY)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_base)
         WebServiceClass.failureHandler = this
         val lp = window.attributes
         lp.screenBrightness = 0.80f
         window.attributes = lp
         val toolbar = binding.toolbarLayout.toolBarView
+        binding.toolbarLayout.back.setOnClickListener(View.OnClickListener {
+            onBackPressed()
+        })
         setSupportActionBar(toolbar)
         showActionBar(true)
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        showLogo(View.GONE)
+        showBackButton(true)
 
+    }
+
+    protected fun showBackButton(isBackButtonVisible: Boolean){
+        if (isBackButtonVisible) {
+            binding.toolbarLayout.appIcon.visibility = View.GONE
+            binding.toolbarLayout.back.visibility = View.VISIBLE
+
+        }else{
+            binding.toolbarLayout.appIcon.visibility = View.VISIBLE
+            binding.toolbarLayout.back.visibility = View.GONE
+
+        }
+    }
+
+    protected fun showLogo(visibility: Int){
+        binding.toolbarLayout.logoIcon.visibility =  visibility
     }
 
     /*
@@ -119,16 +142,20 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.logout -> webServiceClass?.postData(ApiUrls.API_POST_LOGOUT, BlankReq(), PostResponse::class.java, object :
-                ApiResponse<Any,Throwable> {
-                override fun onSuccess(response: Any) {
-                    logout()
-                }
+            R.id.logout -> webServiceClass?.postData(ApiUrls.API_POST_LOGOUT,
+                BlankReq(),
+                PostResponse::class.java,
+                object :
+                    ApiResponse<PostResponse, Throwable> {
+                    override fun onSuccess(response: PostResponse) {
+                        logout()
+                    }
 
-                override fun onFailure(error: Throwable?) {
-                    logout()
-                }
-            })
+                    override fun onFailure(error: Throwable?) {
+                        logout()
+                    }
+                })
+
            // R.id.changePwd -> ChangePwdUtil.moveToChangePwd(this, Constant.userId)
             else -> {
             }
@@ -160,7 +187,10 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
     }
 
     fun logout() {
-        FireBaseUtil.sendEvent(myFirebaseAnalytics, FireBaseUtil.EVENT_NAME_LOGOUT, this.javaClass.simpleName, FireBaseUtil.EVENT_TYPE_CLICK)
+        FireBaseUtil.sendEvent(myFirebaseAnalytics,
+            FireBaseUtil.EVENT_NAME_LOGOUT,
+            this.javaClass.simpleName,
+            FireBaseUtil.EVENT_TYPE_CLICK)
         pref.putString(Constant.USER_NAME, "")
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -173,6 +203,11 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
         } else {
             supportActionBar!!.hide()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
 
@@ -256,14 +291,24 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
             val jsonObject = JSONObject(scannedData)
             if (jsonObject.has(key)) {
                 val data = jsonObject[key] as String
-                FireBaseUtil.sendEvent(myFirebaseAnalytics, FireBaseUtil.getScanEvent(javaClass.simpleName, Constant.SCAN_QR), javaClass.simpleName, FireBaseUtil.EVENT_TYPE_SCAN, data)
+                FireBaseUtil.sendEvent(myFirebaseAnalytics,
+                    FireBaseUtil.getScanEvent(javaClass.simpleName,
+                        Constant.SCAN_QR),
+                    javaClass.simpleName,
+                    FireBaseUtil.EVENT_TYPE_SCAN,
+                    data)
                 data
             } else {
                 ""
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            FireBaseUtil.sendEvent(myFirebaseAnalytics, FireBaseUtil.getScanEvent(javaClass.simpleName, Constant.SCAN_BAR), javaClass.simpleName, FireBaseUtil.EVENT_TYPE_SCAN, scannedData)
+            FireBaseUtil.sendEvent(myFirebaseAnalytics,
+                FireBaseUtil.getScanEvent(javaClass.simpleName,
+                    Constant.SCAN_BAR),
+                javaClass.simpleName,
+                FireBaseUtil.EVENT_TYPE_SCAN,
+                scannedData)
 
             //Toast.makeText(this,"--"+e.toString(),Toast.LENGTH_LONG).show();
             if (key.isEmpty()) {
@@ -281,14 +326,24 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
             val jsonObject = JSONObject(scannedData)
             if (jsonObject.has(key)) {
                 val data = jsonObject[key] as String
-                FireBaseUtil.sendEvent(myFirebaseAnalytics, FireBaseUtil.getScanEvent(javaClass.simpleName, Constant.SCAN_QR), javaClass.simpleName, FireBaseUtil.EVENT_TYPE_SCAN, data)
+                FireBaseUtil.sendEvent(myFirebaseAnalytics,
+                    FireBaseUtil.getScanEvent(javaClass.simpleName,
+                        Constant.SCAN_QR),
+                    javaClass.simpleName,
+                    FireBaseUtil.EVENT_TYPE_SCAN,
+                    data)
                 data
             } else {
                 ""
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            FireBaseUtil.sendEvent(myFirebaseAnalytics, FireBaseUtil.getScanEvent(javaClass.simpleName, Constant.SCAN_BAR), javaClass.simpleName, FireBaseUtil.EVENT_TYPE_SCAN, scannedData)
+            FireBaseUtil.sendEvent(myFirebaseAnalytics,
+                FireBaseUtil.getScanEvent(javaClass.simpleName,
+                    Constant.SCAN_BAR),
+                javaClass.simpleName,
+                FireBaseUtil.EVENT_TYPE_SCAN,
+                scannedData)
 
             //Toast.makeText(this,"--"+e.toString(),Toast.LENGTH_LONG).show();
             scannedData
@@ -341,7 +396,11 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray,
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         var permissionCheck = PackageManager.PERMISSION_GRANTED
         for (permission in grantResults) {
@@ -365,20 +424,26 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
         }
     }
 
-    fun requestAppPermissions(requestedPermissions: Array<String?>,
-                              stringId: Int, requestCode: Int) {
+    fun requestAppPermissions(
+        requestedPermissions: Array<String?>,
+        stringId: Int, requestCode: Int,
+    ) {
         mErrorString!!.put(requestCode, stringId)
         var permissionCheck = PackageManager.PERMISSION_GRANTED
         var shouldShowRequestPermissionRationale = false
         for (permission in requestedPermissions) {
             permissionCheck += ContextCompat.checkSelfPermission(this, permission!!)
-            shouldShowRequestPermissionRationale = shouldShowRequestPermissionRationale || ActivityCompat.shouldShowRequestPermissionRationale(this, permission)
+            shouldShowRequestPermissionRationale = shouldShowRequestPermissionRationale || ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                permission)
         }
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             if (shouldShowRequestPermissionRationale) {
                 Snackbar.make(findViewById(R.id.content), stringId,
                     Snackbar.LENGTH_INDEFINITE).setAction("GRANT"
-                ) { ActivityCompat.requestPermissions(this@BaseActivity, requestedPermissions, requestCode) }.show()
+                ) { ActivityCompat.requestPermissions(this@BaseActivity,
+                    requestedPermissions,
+                    requestCode) }.show()
             } else {
                 ActivityCompat.requestPermissions(this, requestedPermissions, requestCode)
             }

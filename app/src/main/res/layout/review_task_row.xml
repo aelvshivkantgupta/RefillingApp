@@ -1,58 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    <layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="model"
-            type="in.dmart.enterprise.refilling.model.apimodel.task.row.response.Row" />
-    </data>
-    <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10dp"
-        android:layout_marginRight="@dimen/_10dp"
-        android:layout_marginTop="@dimen/_5dp"
-        android:tag="@{model}">
-        <RelativeLayout
+        <data>
+            <variable
+                name="model"
+                type="in.dmart.enterprise.refilling.model.apimodel.task.row.response.Row" />
+        </data>
+        <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:padding="@dimen/_10dp"
-            android:layout_margin="@dimen/_5dp">
+            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_marginRight="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_5dp"
+            android:tag="@{model}">
 
-            <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{model.rowName}"
-                android:textColor="@color/magenta_700"
-                android:layout_marginLeft="@dimen/_10dp"
-                android:textSize="@dimen/large_text_size"
-                android:textStyle="bold"
+                android:layout_margin="@dimen/_10dp"
+                android:gravity="center_vertical">
 
-                />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_10dp">
+                <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                    android:id="@+id/rowName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@{model.rowName}"
+                    android:textColor="@color/magenta_700"
+                    android:textSize="@dimen/large_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
+                    android:id="@+id/lblTotalArticles"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/total_articles"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/large_text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/totalArticles"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    />
                 <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
+                    android:id="@+id/totalArticles"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@{model.totalArticles}"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/large_text_size"
-                    />
-            </LinearLayout>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@{model.totalArticles}"
+                    app:layout_constraintBaseline_toBaselineOf="@id/lblTotalArticles"
 
-        </RelativeLayout>
-    </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
-</layout>
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
+    </layout>

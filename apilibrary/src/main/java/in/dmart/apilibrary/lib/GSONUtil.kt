@@ -14,7 +14,7 @@ object GSONUtil {
         }
     }
 
-    fun <T> fromJson(reader: String?, classOfT: Class<T>?): T {
+    fun <T:Any> fromJson(reader: String?, classOfT: Class<T>?): T {
         /* JsonReader reader = new JsonReader(new StringReader(json));
         reader.setLenient(true);*/
         return Gson().fromJson(reader, classOfT)

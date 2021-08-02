@@ -1,5 +1,6 @@
 package `in`.dmart.enterprise.refilling.ui.viewmodel.task.create
 
+import `in`.dmart.apilibrary.constant.ApiUrls
 import `in`.dmart.apilibrary.content.ApiResponse
 import `in`.dmart.apilibrary.content.WebServiceClass
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle
@@ -30,29 +31,10 @@ class CreateTaskArticleViewModel  @Inject constructor(val webServices: WebServic
 
 
     fun sendArticleRequest(rowId:String? = ""){
-        var createTaskArticleReq = CreateTaskArticleReq(rowId)
-        val createTaskArticleData = webServices.getDataFromFile("task_create_article_list",
-            CreateTaskArticleData::class.java)
-        _totalArticles.postValue(createTaskArticleData.totalArticles)
-        var sortedList = sortArticleList(createTaskArticleData.articleList)
-        createTaskArticleData.articleList?.let {
-            for (item in it){
-                if (item.rowId==rowId){
-                    _articleList.postValue(sortedList)
-                    break
-                }else{
-                    _articleList.postValue(ArrayList())
-                    break
-                }
-            }
-        }
-
-        //apiResponse.onSuccess(null)
         viewModelScope.launch {
-            val apiResponse = object : ApiResponse<CreateTaskArticleData,Throwable?> {
+            val apiResponse = object : ApiResponse<CreateTaskArticleData,Throwable> {
                 override fun onSuccess(response: CreateTaskArticleData) {
                     //write your business logic
-
                     _articleList.postValue(response.articleList)
                 }
 
@@ -61,10 +43,8 @@ class CreateTaskArticleViewModel  @Inject constructor(val webServices: WebServic
                 }
 
             }
-
-
-
-            //webServices.login()
+            var createTaskArticles = CreateTaskArticleReq(rowId);
+            webServices.getData(ApiUrls.API_GET_ARTICLES_BY_ROW,createTaskArticles,CreateTaskArticleData::class.java,apiResponse)
         }
 
     }

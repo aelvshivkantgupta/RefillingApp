@@ -35,7 +35,7 @@ class SharedPref  @Inject constructor(@ApplicationContext private val context: C
         putString(key, GSONUtil.objectToJsonString(`object`))
     }
 
-    fun <T> getObject(key: String?, classOfT: Class<T>?): T? {
+    fun <T:Any> getObject(key: String?, classOfT: Class<T>?): T? {
         return try {
             val reader = getString(key)
             GSONUtil.fromJson(reader, classOfT)

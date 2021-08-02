@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
+            android:id="@+id/customCardView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/search_height"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_height="@dimen/height"
+            android:layout_marginStart="@dimen/_10dp"
             android:layout_marginLeft="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_marginEnd="@dimen/_10dp"
             android:layout_marginRight="@dimen/_10dp"
-           >
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent">
-            <EditText
-                android:id="@+id/etSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/search"
-                android:layout_margin="@dimen/_5dp"
-                android:hint="Search Row No or Scan EAN"
-                android:background="@android:color/transparent"
-                />
-            <Button
-                android:id="@+id/search"
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="match_parent"
-                android:text="@string/go"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_5dp"
-               />
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5dp"
+                    android:layout_toLeftOf="@+id/search"
+                    android:background="@android:color/transparent"
+                    android:hint="Search Row No or Scan EAN" />
+
+                <Button
+                    android:id="@+id/search"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_5dp"
+                    android:text="@string/go" />
             </RelativeLayout>
         </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customCardView" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

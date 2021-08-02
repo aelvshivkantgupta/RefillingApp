@@ -7,46 +7,56 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-        <androidx.cardview.widget.CardView
+        android:orientation="vertical">
+
+        <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/search_height"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_height="@dimen/height"
             android:layout_marginLeft="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_10dp"
             android:layout_marginRight="@dimen/_10dp"
-            >
-            <RelativeLayout
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/etSearch"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent">
-                <EditText
-                    android:id="@+id/etSearch"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toLeftOf="@+id/search"
-                    android:layout_margin="@dimen/_5dp"
-                    android:hint="@string/search_row_no"
-                    android:background="@android:color/transparent"
-                    />
-                <Button
-                    android:id="@+id/search"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="match_parent"
-                    android:text="@string/go"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/_5dp"
-                  />
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5dp"
+                android:layout_toLeftOf="@+id/search"
+                android:background="@android:color/transparent"
+                android:hint="@string/search_row_no"
+                android:layout_alignParentLeft="true"/>
+
+            <Button
+                android:id="@+id/search"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/_5dp"
+                android:text="@string/go"
+                android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+        </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

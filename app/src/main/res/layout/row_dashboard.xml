@@ -9,7 +9,7 @@
     </data>
 <in.dmart.enterprise.refilling.ui.lib.view.CustomCardView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/row_height"
     android:layout_marginLeft="@dimen/_10dp"
     android:layout_marginRight="@dimen/_10dp"
     android:layout_marginTop="@dimen/_5dp"
@@ -17,10 +17,7 @@
     app:cardBackgroundColor="@color/magenta_200"
     android:tag="@{model}"
     >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/row_height"
-        android:gravity="center">
+
 
         <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
             android:layout_width="wrap_content"
@@ -28,10 +25,10 @@
             android:text="@{model}"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/_10dp"
-            android:textSize="@dimen/large_text_size"
+            android:textSize="@dimen/x_large_text_size"
+            android:layout_gravity="center"
             />
 
-    </LinearLayout>
 </in.dmart.enterprise.refilling.ui.lib.view.CustomCardView>
 
 </layout>

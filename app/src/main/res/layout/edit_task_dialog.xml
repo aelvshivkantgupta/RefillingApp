@@ -82,7 +82,9 @@
             app:layout_constraintTop_toTopOf="@id/label_mrp"
             app:layout_constraintBottom_toBottomOf="@id/label_mrp"
             tools:text="500"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:textStyle="bold"
+            android:textColor="@color/ligth_green_900"/>
 
         <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
             android:id="@+id/label_caselot"
@@ -92,7 +94,8 @@
             android:layout_marginEnd="@dimen/_10dp"
             app:layout_constraintEnd_toStartOf="@id/tv_caselot"
             app:layout_constraintTop_toTopOf="@id/label_mrp"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:visibility="gone"/>
 
         <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
             android:id="@+id/tv_caselot"
@@ -104,13 +107,15 @@
             app:layout_constraintTop_toTopOf="@id/label_caselot"
             app:layout_constraintBottom_toBottomOf="@id/label_caselot"
             tools:text="20"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:visibility="gone"/>
 
         <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
             android:id="@+id/label_short"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/shorts"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@id/label_reenter_details"
             app:layout_constraintTop_toBottomOf="@id/tv_mrp" />
 
@@ -120,6 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10dp"
             android:text="@{model.shorts}"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@id/label_short"
             app:layout_constraintTop_toTopOf="@id/label_short"
             app:layout_constraintBottom_toBottomOf="@id/label_short"
@@ -134,7 +140,8 @@
             android:layout_marginEnd="@dimen/_10dp"
             app:layout_constraintEnd_toStartOf="@id/tv_demand"
             app:layout_constraintTop_toTopOf="@id/label_short"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:visibility="gone"/>
 
         <in.dmart.enterprise.refilling.ui.lib.view.CustomTextView
             android:id="@+id/tv_demand"
@@ -146,7 +153,8 @@
             app:layout_constraintTop_toTopOf="@id/label_demand"
             app:layout_constraintBottom_toBottomOf="@id/label_demand"
             tools:text="100"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:visibility="gone"/>
 
         <in.dmart.enterprise.refilling.ui.lib.view.LblTextView
             android:id="@+id/label_caselot_qty"
@@ -195,6 +203,7 @@
             android:layout_marginStart="@dimen/_10dp"
             android:textSize="@dimen/medium_text_size"
             android:textColor="@color/blue"
+            android:textStyle="bold"
             android:text="0"
             app:layout_constraintStart_toEndOf="@id/label_total_qty"
             app:layout_constraintTop_toTopOf="@id/label_total_qty"

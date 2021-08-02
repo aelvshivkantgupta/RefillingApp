@@ -103,7 +103,12 @@
             app:layout_constraintTop_toTopOf="@id/label_refilling_qty"
             app:layout_constraintBottom_toBottomOf="@id/label_refilling_qty"
             tools:text="4 Caselot (40 Unit)"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:textColor="@color/ligth_green_900"
+            android:textStyle="bold"
+            android:text="@{model.totalCaselot}"
+
+            />
 
         <Button
             android:id="@+id/btn_no"
