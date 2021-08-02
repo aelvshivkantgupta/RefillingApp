@@ -79,12 +79,10 @@ class LoginViewModel @Inject constructor(
         _loginResp.postValue(Resource.loading(null))
 
         viewModelScope.launch {
-            val apiResponse = object : ApiResponse<Any, Throwable> {
-                override fun onSuccess(response: Any) {
+            val apiResponse = object : ApiResponse<LoginResp, Throwable> {
+                override fun onSuccess(response: LoginResp) {
                     //write your business logic
-                    if (response is LoginResp) {
-                        checkResponse(loginRequest, response)
-                    }
+                    checkResponse(loginRequest, response)
                 }
 
                 override fun onFailure(error: Throwable?) {
