@@ -48,12 +48,12 @@ class LoginViewModel @Inject constructor(
         _userMutableLiveData.value = loginRequest
     }
 
-    /* fun sendLoginRequest(loginRequest: LoginRequest) {
+     fun sendLoginRequest(loginRequest: LoginRequest) {
          val loginResp = LoginResp()
          loginResp.userId = loginRequest.userId
          //apiResponse.onSuccess(null)
          viewModelScope.launch {
-             _loginResp.postValue(Resource.loading(loginRequest))
+             _loginResp.postValue(Resource.success(LoginResp()))
              val apiResponse = object : ApiResponse<LoginResp, Throwable?> {
                  override fun onSuccess(response: LoginResp) {
                      //write your business logic
@@ -70,12 +70,12 @@ class LoginViewModel @Inject constructor(
              //webServices.login()
          }
 
-     }*/
+     }
 
-    fun sendLoginRequest(loginRequest: LoginRequest) {
-        /*var loginResp = LoginResp()
+   /* fun sendLoginRequest(loginRequest: LoginRequest) {
+        *//*var loginResp = LoginResp()
         loginResp.userId = loginRequest.userId
-        apiResponse.onSuccess(null)*/
+        apiResponse.onSuccess(null)*//*
         _loginResp.postValue(Resource.loading(null))
 
         viewModelScope.launch {
@@ -99,7 +99,7 @@ class LoginViewModel @Inject constructor(
                 LoginResp::class.java, apiResponse
             )
         }
-    }
+    }*/
 
     private fun checkResponse(loginRequest: LoginRequest, response: LoginResp) {
         if (isAuthorizedUser(response.userRoles, Constant.REFILLING_APP)) {

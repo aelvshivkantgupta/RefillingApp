@@ -31,7 +31,7 @@ class ReviewTaskRowActivity : BaseActivity<ActivityReviewTaskBinding>(),AdapterL
         setTitle(resources.getString(R.string.fc_row))
         dataBinding.lifecycleOwner = this
         setObserver()
-        taskReviewRowViewModel.sendRowRequest(TaskType.CREATE)
+        taskReviewRowViewModel.sendRowRequest(TaskType.REVIEW)
 
     }
 

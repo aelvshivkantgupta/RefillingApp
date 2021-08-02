@@ -1,5 +1,6 @@
 package `in`.dmart.enterprise.refilling.ui.view.activity.task.create
 
+import `in`.dmart.apilibrary.constant.ApiUrls
 import `in`.dmart.enterprise.refilling.R
 import `in`.dmart.enterprise.refilling.constant.Constant
 import `in`.dmart.enterprise.refilling.databinding.ActivityCreateTaskArticleBinding
@@ -37,7 +38,7 @@ class CreateTaskArticleActivity : BaseActivity<ActivityCreateTaskArticleBinding>
         setObserver()
         val row = intent.getParcelableExtra<Row>(Constant.OBJ)
         setTitle("Row "+row.rowName)
-        createTaskArticleViewModel.sendArticleRequest(row.rowId!!)
+        createTaskArticleViewModel.sendArticleRequest(ApiUrls.API_GET_ARTICLES_BY_ROW,row.rowId!!)
 
         dataBinding.sinnerSortBy.setAdapter(ArrayAdapter.createFromResource(this,
             R.array.sortBy,
@@ -77,6 +78,7 @@ class CreateTaskArticleActivity : BaseActivity<ActivityCreateTaskArticleBinding>
                 totalCaseLotQty: String,
                 priority: Boolean,
             ) {
+                createTaskArticleViewModel.createTask(priority.toString(),"",totalCaseLotQty,createTaskArticle)
             }
 
             override fun onCancelClick() {
