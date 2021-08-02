@@ -9,13 +9,16 @@ import `in`.dmart.apilibrary.model.response_model.ErrorResponseModel
 import `in`.dmart.apilibrary.network.ApiService
 import `in`.dmart.apilibrary.util.Logger
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.annotation.Nullable
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ActivityScoped
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -45,7 +48,7 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
         }
 
 
-    fun postData(url: String, reqBody: Any?, c: Class<*>, apiResponse: ApiResponse<Any,Throwable>, header: Map<String, String> = headerMap) {
+    fun <T:Any>postData(url: String, reqBody: Any?, c: Class<T>, apiResponse: ApiResponse<T,Throwable>, header: Map<String, String> = headerMap) {
         showProgressDialog()
         val call: Call<ResponseBody> = apiService.postData(url, header, reqBody)
         call.enqueue(object : Callback<ResponseBody?> {
@@ -63,8 +66,8 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
     }
 
 
-    fun  getData(url: String, reqBody: Any?, c: Class<*>,
-                    apiResponse: ApiResponse<Any,Throwable>,header: Map<String, String> = headerMap) {
+    fun  <T:Any>getData(url: String, reqBody: Any?, c: Class<T>,
+                    apiResponse: ApiResponse<T,Throwable>,header: Map<String, String> = headerMap) {
         showProgressDialog()
         val call: Call<ResponseBody> = if (reqBody != null) {
             apiService.getData(url, header, pojoToMap(reqBody))
@@ -86,8 +89,8 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
         })
     }
 
-    fun  postQuery(url: String, reqBody: Any,  c: Class<*>,
-                      apiResponse: ApiResponse<Any,Throwable>,header: Map<String, String> = headerMap) {
+    fun  <T:Any>postQuery(url: String, reqBody: Any,  c: Class<T>,
+                      apiResponse: ApiResponse<T,Throwable>,header: Map<String, String> = headerMap) {
         showProgressDialog()
         val call: Call<ResponseBody> = apiService.postQuery(url, header, pojoToMap(reqBody))
         call.enqueue(object : Callback<ResponseBody?> {
@@ -104,7 +107,7 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
         })
     }
 
-    fun login(url: String, reqBody: Any?, c: Class<*>, apiResponse: ApiResponse<Any,Throwable>) {
+    fun <T:Any>login(url: String, reqBody: Any?, c: Class<T>, apiResponse: ApiResponse<T,Throwable>) {
         val headerMap = HashMap<String, String>()
         headerMap[ConstantParameters.CONTENT_TYPE] = "application/json"
         headerMap[ConstantParameters.TIMESTAMP] = ""
@@ -113,14 +116,14 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
 
 
     //--------------Util methods -----------------------//
-    private fun triggerSuccessResponse(url: String, reqBody: Any?, response: Response<ResponseBody?>, apiResponse: ApiResponse<Any,Throwable>, c: Class<*>) {
+    private fun<T:Any> triggerSuccessResponse(url: String, reqBody: Any?, response: Response<ResponseBody?>, apiResponse: ApiResponse<T,Throwable>, c: Class<T>) {
         try {
             if (response.isSuccessful && response.body() != null) {
                 val strResponse = response.body()?.string() ?: ""
                 Logger.log(tag, "------------------ Sucess response - $strResponse")
                 headerToken(response)
                 hideProgressDialog()
-                apiResponse.onSuccess(GSONUtil.fromJson(strResponse, c))
+                apiResponse.onSuccess( GSONUtil.fromJson<T>(strResponse,c))
                 checkEmptyRes(url, reqBody, strResponse, true)
             } else {
                 Logger.log(tag, "------------------ FAIL response - " + response.body())
@@ -158,14 +161,14 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
                 }
             }
             if (!success) {
-                //  String msg = "";
-                /* if (jsonObject.has("returnMessage")) {
+                  var msg = "";
+                 if (jsonObject.has("returnMessage")) {
                     msg = jsonObject.getString("returnMessage");
                 } else if (jsonObject.has("message")) {
                     msg = jsonObject.getString("message");
                 }
                 // failureHandler.onFailure(url,reqBody,response.code());
-                showToast(msg);*/
+                showToast(msg);
                 if (logNonFatalError && failureHandler != null) {
                     failureHandler?.onFailure(url, reqBody, json)
                 }
@@ -231,21 +234,22 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
     }
 
     private fun showProgressDialog() {
-        if (isProgressDialogEnable && (progressDialog == null || progressDialog?.isShowing != true)) {
+        /*if (isProgressDialogEnable && (progressDialog == null || progressDialog?.isShowing != true)) {
             Logger.log(tag, " Progress Dialog")
             progressDialog = CustomDialog(context)
             progressDialog?.show()
-        }
+        }*/
+
     }
 
     private fun hideProgressDialog() {
-        try {
+      /*  try {
             if (isProgressDialogEnable && progressDialog != null && progressDialog?.isShowing == true) {
                 progressDialog?.dismiss()
             }
         } catch (e: Exception) {
             Logger.log(tag, e.message)
-        }
+        }*/
     }
 
     //--------------Headers -----------------------//
@@ -324,7 +328,7 @@ class WebServiceClass @Inject constructor(@ApplicationContext val context: Conte
         }
         return jsonString
     }
-    fun <T>getDataFromFile(fileName:String,c: Class<T>): T {
+    fun <T:Any>getDataFromFile(fileName:String,c: Class<T>): T {
         return GSONUtil.fromJson(getJsonDataFromAsset(fileName),c)
     }
 

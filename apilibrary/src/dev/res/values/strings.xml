@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--<string name="baseurl">http://10.0.4.63:8085/dad/v1/</string>-->
-    <string name="baseurl"> http://enterprise-dev.dmart.in</string>
+    <string name="baseurl"> http://10.0.21.145:8140</string>
     <string name="slackwebhookkey">T0GSCBPUJ/B4T717ULA/ClSewk5vBcYZ3PxWQj5w3tAT</string>
 </resources>

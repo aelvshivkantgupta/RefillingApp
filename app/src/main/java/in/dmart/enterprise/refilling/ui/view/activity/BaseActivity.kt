@@ -146,8 +146,8 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
                 BlankReq(),
                 PostResponse::class.java,
                 object :
-                    ApiResponse<Any, Throwable> {
-                    override fun onSuccess(response: Any) {
+                    ApiResponse<PostResponse, Throwable> {
+                    override fun onSuccess(response: PostResponse) {
                         logout()
                     }
 

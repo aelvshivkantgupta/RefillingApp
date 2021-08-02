@@ -83,7 +83,7 @@ object AppUtil {
         }, 1)
     }
 
-    fun <T> getModelFromAssets(context: Context, fileName: String?, modelClass: Class<T>?): T? {
+    fun <T:Any> getModelFromAssets(context: Context, fileName: String?, modelClass: Class<T>?): T? {
         val jsonString: String
         jsonString = try {
             val `is` = context.assets.open(fileName!!)

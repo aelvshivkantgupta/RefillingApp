@@ -1,5 +1,6 @@
 package `in`.dmart.enterprise.refilling.ui.viewmodel.task
 
+import `in`.dmart.apilibrary.constant.ApiUrls
 import `in`.dmart.apilibrary.content.ApiResponse
 import `in`.dmart.apilibrary.content.WebServiceClass
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.TaskRow
@@ -9,10 +10,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.TaskType
-import android.view.View
+import `in`.dmart.enterprise.refilling.model.apimodel.task.row.request.CreateTaskRowRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class TaskRowViewModel  @Inject constructor(val webServices: WebServiceClass): ViewModel(){
@@ -22,10 +24,9 @@ class TaskRowViewModel  @Inject constructor(val webServices: WebServiceClass): V
 
     fun sendRowRequest(taskType: TaskType){
         viewModelScope.launch {
-            val apiResponse = object : ApiResponse<TaskRow, Throwable?> {
+            var apiResponse = object : ApiResponse<TaskRow, Throwable> {
                 override fun onSuccess(response: TaskRow) {
-                    //write your business logic
-
+                    //if (response.rowList.)
                     _rowList.postValue(response.rowList)
                 }
 
@@ -34,9 +35,8 @@ class TaskRowViewModel  @Inject constructor(val webServices: WebServiceClass): V
                 }
 
             }
-            var list = webServices.getDataFromFile("task_row_list",TaskRow::class.java).rowList
-            _rowList.postValue(list)
-            //webServices.login()
+            var taskRowReq = CreateTaskRowRequest(taskType.name)
+            webServices.getData(ApiUrls.API_GET_ROW_LIST,taskRowReq,TaskRow::class.java,apiResponse)
         }
 
     }
