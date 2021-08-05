@@ -53,8 +53,8 @@ android {
         }
         uat {
             debuggable true
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             signingConfig signingConfigs.defKey
             applicationIdSuffix '.uat'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

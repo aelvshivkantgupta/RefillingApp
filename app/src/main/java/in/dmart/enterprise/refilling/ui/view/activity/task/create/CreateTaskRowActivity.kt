@@ -1,6 +1,8 @@
 package `in`.dmart.enterprise.refilling.ui.view.activity.task.create
 
+import `in`.dmart.apilibrary.dialog.CustomDialog
 import `in`.dmart.enterprise.refilling.R
+import `in`.dmart.enterprise.refilling.apiutil.Status
 import `in`.dmart.enterprise.refilling.constant.Constant
 import `in`.dmart.enterprise.refilling.databinding.ActivityCreateTaskRowBinding
 import `in`.dmart.enterprise.refilling.databinding.CrateTaskRowBinding
@@ -14,6 +16,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import `in`.dmart.enterprise.refilling.model.apimodel.task.row.TaskType
+import `in`.dmart.enterprise.refilling.ui.view.activity.dashboard.DashboardActivity
 import `in`.dmart.enterprise.refilling.util.searchByRowName
 import android.content.Intent
 import android.text.Editable
@@ -37,11 +40,29 @@ class CreateTaskRowActivity : BaseActivity<ActivityCreateTaskRowBinding>(),
         createRowViewModel.sendRowRequest(TaskType.CREATE)
 
     }
-    private fun setObserver(){
-        createRowViewModel.rowList.observe(this, Observer {
-            setAdapter(it)
-        } )
+
+    private fun setObserver() {
+        createRowViewModel.rowList.observe(this, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let {
+                        hideProgressDialog()
+                        setAdapter(it)
+                    }
+                }
+                Status.LOADING -> {
+                    showProgressDialog()
+                }
+                Status.ERROR -> {
+                    hideProgressDialog()
+                    if (it.message?.isNotEmpty() == true) {
+                        showToast(it.message)
+                    }
+                }
+            }
+        })
     }
+
 
     private fun setAdapter(rowList: List<Row>){
         mAdapter = CustomAdapter<CrateTaskRowBinding, Row>(this,R.layout.crate_task_row,rowList,this)

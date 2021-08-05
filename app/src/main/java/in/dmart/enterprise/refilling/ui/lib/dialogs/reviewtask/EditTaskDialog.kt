@@ -3,6 +3,7 @@ package `in`.dmart.enterprise.refilling.ui.lib.dialogs.reviewtask
 import `in`.dmart.enterprise.refilling.R
 import `in`.dmart.enterprise.refilling.databinding.EditTaskDialogBinding
 import `in`.dmart.enterprise.refilling.model.apimodel.task.review.article.response.ReviewTaskArticle
+import `in`.dmart.enterprise.refilling.util.AppUtil
 import `in`.dmart.enterprise.refilling.util.toInteger
 import android.app.Dialog
 import android.content.Context
@@ -35,8 +36,7 @@ class EditTaskDialog(
             model = reviewTaskArticle
             etCaselotQty.addTextChangedListener(this)
             btnEdit.setOnClickListener {
-                onEditClick(dataBinding)
-                closeDialog(dialog)
+                onEditClick(dataBinding,dialog)
             }
 
             btnCancel.setOnClickListener {
@@ -48,14 +48,21 @@ class EditTaskDialog(
         dialog.show()
     }
 
-    private fun onEditClick(dataBinding: EditTaskDialogBinding) {
+    private fun onEditClick(dataBinding: EditTaskDialogBinding, dialog: Dialog?) {
         val caseLotQty = dataBinding.etCaselotQty.text.toString().toInteger(0)
-        if (caseLotQty > 0 && dataBinding.etReason.text.toString().trim().isNotEmpty()) {
-            popupActionListener?.onCreateClick(
-                reviewTaskArticle,
-                caseLotQty.toString(),
-                dataBinding.etReason.text.toString()
-            )
+        if (caseLotQty > 0 ) {
+            if (dataBinding.etReason.text.toString().isEmpty()){
+                AppUtil.showToast("Please enter valid reason to edit the task.")
+            }else {
+                closeDialog(dialog)
+                popupActionListener?.onCreateClick(
+                    reviewTaskArticle,
+                    caseLotQty.toString(),
+                    dataBinding.etReason.text.toString()
+                )
+            }
+        }else{
+            AppUtil.showToast("Please enter valid case lot qty")
         }
     }
 

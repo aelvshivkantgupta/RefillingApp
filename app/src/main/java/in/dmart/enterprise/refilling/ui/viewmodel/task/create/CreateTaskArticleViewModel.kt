@@ -1,6 +1,7 @@
 package `in`.dmart.enterprise.refilling.ui.viewmodel.task.create
 
 import `in`.dmart.apilibrary.content.WebServiceClass
+import `in`.dmart.enterprise.refilling.apiutil.Resource
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle
 import `in`.dmart.enterprise.refilling.ui.viewmodel.task.BaseViewModel
 import android.view.View
@@ -22,7 +23,7 @@ class CreateTaskArticleViewModel  @Inject constructor(override val webServices: 
         get() = _totalArticles
 
     fun onSort(view: View){
-        _articleList.value = sortArticleList(createTaskArticleList.value)
+        _articleList.value = Resource.success(sortArticleList(createTaskArticleList.value?.data))
     }
 
     fun sortArticleList(list:List<CreateTaskArticle>?):List<CreateTaskArticle>? {

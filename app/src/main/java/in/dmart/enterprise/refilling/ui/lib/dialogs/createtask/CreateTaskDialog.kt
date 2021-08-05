@@ -3,6 +3,7 @@ package `in`.dmart.enterprise.refilling.ui.lib.dialogs.createtask
 import `in`.dmart.enterprise.refilling.R
 import `in`.dmart.enterprise.refilling.databinding.CreateTaskDialogBinding
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle
+import `in`.dmart.enterprise.refilling.util.AppUtil
 import `in`.dmart.enterprise.refilling.util.toInteger
 import android.app.Dialog
 import android.content.Context
@@ -35,8 +36,13 @@ class CreateTaskDialog(
             model = createTaskArticle
             etCaselotQty.addTextChangedListener(this)
             btnCreate.setOnClickListener {
-                onCreateClick(dataBinding)
-                closeDialog(dialog)
+                var caseLotQty = dataBinding.etCaselotQty.text.toString().toInteger(0)
+                if (caseLotQty == 0 ){
+                    AppUtil.showToast("Please enter caselot Qty")
+                }else {
+                    onCreateClick(dataBinding)
+                    closeDialog(dialog)
+                }
             }
 
             btnCancel.setOnClickListener {

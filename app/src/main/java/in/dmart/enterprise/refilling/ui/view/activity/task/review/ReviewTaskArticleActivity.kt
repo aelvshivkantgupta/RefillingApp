@@ -1,6 +1,7 @@
 package `in`.dmart.enterprise.refilling.ui.view.activity.task.review
 
 import `in`.dmart.enterprise.refilling.R
+import `in`.dmart.enterprise.refilling.apiutil.Status
 import `in`.dmart.enterprise.refilling.constant.Constant
 import `in`.dmart.enterprise.refilling.databinding.ActivityReviewTaskArticleBinding
 import `in`.dmart.enterprise.refilling.databinding.ReviewArticleInfoBinding
@@ -36,20 +37,80 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
         dataBinding.lifecycleOwner = this
         dataBinding.viewModel = reviewTaskArticleViewModel
         setObserver()
+        setEditTaskObserver()
+        setCloseTaskObserver()
         val row = intent.getParcelableExtra<Row>(Constant.OBJ)
         setTitle("Row "+row.rowName)
         reviewTaskArticleViewModel.sendArticleRequest(row.rowId!!)
 
     }
-    private fun setObserver(){
-        reviewTaskArticleViewModel.articleList.observe(this, Observer {
-            var drawable = if(reviewTaskArticleViewModel.hasDataInAscendingOrder) resources.getDrawable(R.drawable.ic_down) else resources.getDrawable(R.drawable.ic_up)
-            dataBinding.upDown.setImageDrawable(drawable)
-            setAdapter(it)
-        } )
 
+    private fun setObserver() {
+        reviewTaskArticleViewModel.articleList.observe(this, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let {
+                        hideProgressDialog()
+                        var drawable = if(reviewTaskArticleViewModel.hasDataInAscendingOrder) resources.getDrawable(R.drawable.ic_down) else resources.getDrawable(R.drawable.ic_up)
+                        dataBinding.upDown.setImageDrawable(drawable)
+                        setAdapter(it)                 }
+                }
+                Status.LOADING -> {
+                    showProgressDialog()
+                }
+                Status.ERROR -> {
+                    hideProgressDialog()
+                    if (it.message?.isNotEmpty() == true) {
+                        showToast(it.message)
+                    }
+                }
+            }
+        })
     }
-
+    private fun setEditTaskObserver() {
+        reviewTaskArticleViewModel.editTask.observe(this, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let {
+                        hideProgressDialog()
+                        showToast(it.message)
+                        // createTaskArticleViewModel.sendArticleRequest(ApiUrls.API_GET_ARTICLES_BY_ROW,row?.rowId!!)
+                    }
+                }
+                Status.LOADING -> {
+                    showProgressDialog()
+                }
+                Status.ERROR -> {
+                    hideProgressDialog()
+                    if (it.message?.isNotEmpty() == true) {
+                        showToast(it.message)
+                    }
+                }
+            }
+        })
+    }
+    private fun setCloseTaskObserver() {
+        reviewTaskArticleViewModel.closeTask.observe(this, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let {
+                        hideProgressDialog()
+                        showToast(it.message)
+                        // createTaskArticleViewModel.sendArticleRequest(ApiUrls.API_GET_ARTICLES_BY_ROW,row?.rowId!!)
+                    }
+                }
+                Status.LOADING -> {
+                    showProgressDialog()
+                }
+                Status.ERROR -> {
+                    hideProgressDialog()
+                    if (it.message?.isNotEmpty() == true) {
+                        showToast(it.message)
+                    }
+                }
+            }
+        })
+    }
     private fun setAdapter(articleList: List<ReviewTaskArticle>?){
         if (articleList == null || articleList.isEmpty()){
             finish()
@@ -85,6 +146,8 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
                 reason: String,
             ) {
 
+                reviewTaskArticleViewModel.createOrUpdateTask(reason,totalCaseLotQty,reviewTaskArticle)
+
             }
 
             override fun onCancelClick() {
@@ -93,12 +156,13 @@ class ReviewTaskArticleActivity : BaseActivity<ActivityReviewTaskArticleBinding>
 
 
         }).show()
-
     }
+
     fun onCloseTask(view: View){
         var reviewTaskArticle = view.tag as? ReviewTaskArticle
         CloseTaskDialog(this,reviewTaskArticle!!,object : CloseTaskDialog.PopupActionListener{
             override fun onYesClick(model: ReviewTaskArticle) {
+                reviewTaskArticleViewModel.closeTask(model)
             }
 
             override fun onNoClick() {

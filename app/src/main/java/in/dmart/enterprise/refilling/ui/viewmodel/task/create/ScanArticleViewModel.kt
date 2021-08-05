@@ -3,6 +3,7 @@ package `in`.dmart.enterprise.refilling.ui.viewmodel.task.create
 import `in`.dmart.apilibrary.constant.ApiUrls
 import `in`.dmart.apilibrary.content.WebServiceClass
 import `in`.dmart.enterprise.refilling.R
+import `in`.dmart.enterprise.refilling.apiutil.Resource
 import `in`.dmart.enterprise.refilling.ui.lib.Application
 import `in`.dmart.enterprise.refilling.ui.viewmodel.task.BaseViewModel
 import `in`.dmart.enterprise.refilling.util.AppUtil
@@ -17,8 +18,6 @@ class ScanArticleViewModel  @Inject constructor(override val webServices: WebSer
 
     val searchText: MutableLiveData<String> = MutableLiveData("")
 
-
-
     fun onSearchClick(view: View){
         if (view is Button){
             searchText?.let {
@@ -32,7 +31,7 @@ class ScanArticleViewModel  @Inject constructor(override val webServices: WebSer
                     }
                 }else{
                     view.text = go
-                    _articleList.value = ArrayList()
+                    _articleList.value = Resource.success(ArrayList())
                 }
             }
         }

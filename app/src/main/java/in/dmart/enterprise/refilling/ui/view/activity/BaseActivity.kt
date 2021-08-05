@@ -210,8 +210,18 @@ open class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), FailureHandl
         finish()
     }
 
+    fun showProgressDialog(cancelable:Boolean = false ){
+        if (!cancelable){
+            window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        }
+        binding?.simpleProgressBar.visibility = View.VISIBLE
+    }
 
-
+    fun hideProgressDialog(){
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        binding?.simpleProgressBar.visibility = View.GONE
+    }
     protected fun <T : ViewDataBinding?> putContentView(@LayoutRes resId: Int): T {
         return DataBindingUtil.inflate<T>(layoutInflater, resId, binding.activityContent, true)
     }

@@ -1,32 +1,23 @@
 package `in`.dmart.enterprise.refilling.ui.view.activity.task.create
 
 import `in`.dmart.enterprise.refilling.R
-import `in`.dmart.enterprise.refilling.constant.Constant
+import `in`.dmart.enterprise.refilling.apiutil.Status
 import `in`.dmart.enterprise.refilling.databinding.ActivityScanArticleBinding
 import `in`.dmart.enterprise.refilling.databinding.ArticleInfoBinding
 import `in`.dmart.enterprise.refilling.databinding.CreateTaskArticleRowBinding
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.CreateTaskArticle
 import `in`.dmart.enterprise.refilling.model.apimodel.task.create.article.resonse.LastRefillingDetail
-import `in`.dmart.enterprise.refilling.model.apimodel.task.row.response.Row
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.AdapterListener
 import `in`.dmart.enterprise.refilling.ui.lib.adapter.CustomAdapter
 import `in`.dmart.enterprise.refilling.ui.lib.dialogs.createtask.CreateTaskDialog
 import `in`.dmart.enterprise.refilling.ui.lib.popup.PopupView
 import `in`.dmart.enterprise.refilling.ui.view.activity.BaseActivity
-import `in`.dmart.enterprise.refilling.ui.viewmodel.task.create.CreateTaskArticleViewModel
 import `in`.dmart.enterprise.refilling.ui.viewmodel.task.create.ScanArticleViewModel
 import `in`.dmart.enterprise.refilling.util.setAdapterToView
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
-import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,17 +32,55 @@ class ScanArticleActivity : BaseActivity<ActivityScanArticleBinding>(),AdapterLi
         dataBinding.lifecycleOwner = this
         dataBinding.viewModel = scanArticleViewModel
         setObserver()
-
+        setCreateTaskObserver()
 
     }
-    private fun setObserver(){
-        scanArticleViewModel.createTaskArticleList.observe(this, Observer {
-            setAdapter(it)
-        } )
+    private fun setObserver() {
+        scanArticleViewModel.createTaskArticleList.observe(this, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let {
+                        hideProgressDialog()
+                        setAdapter(it)                    }
+                }
+                Status.LOADING -> {
+                    showProgressDialog()
+                }
+                Status.ERROR -> {
+                    hideProgressDialog()
+                    if (it.message?.isNotEmpty() == true) {
+                        showToast(it.message)
+                    }
+                }
+            }
+        })
     }
+
+    private fun setCreateTaskObserver() {
+        scanArticleViewModel.createTask.observe(this, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let {
+                        hideProgressDialog()
+                        showToast(it.message)
+                        // createTaskArticleViewModel.sendArticleRequest(ApiUrls.API_GET_ARTICLES_BY_ROW,row?.rowId!!)
+                    }
+                }
+                Status.LOADING -> {
+                    showProgressDialog()
+                }
+                Status.ERROR -> {
+                    hideProgressDialog()
+                    if (it.message?.isNotEmpty() == true) {
+                        showToast(it.message)
+                    }
+                }
+            }
+        })
+    }
+
 
     private fun setAdapter(createTaskArticleList: List<CreateTaskArticle>){
-
             if (mAdapter == null) {
                 mAdapter = CustomAdapter<CreateTaskArticleRowBinding, CreateTaskArticle>(this,
                     R.layout.create_task_article_row,
@@ -83,6 +112,8 @@ class ScanArticleActivity : BaseActivity<ActivityScanArticleBinding>(),AdapterLi
                 totalCaseLotQty: String,
                 priority: Boolean,
             ) {
+                scanArticleViewModel.createOrUpdateTask(priority.toString(),"",totalCaseLotQty,createTaskArticle)
+
             }
 
             override fun onCancelClick() {

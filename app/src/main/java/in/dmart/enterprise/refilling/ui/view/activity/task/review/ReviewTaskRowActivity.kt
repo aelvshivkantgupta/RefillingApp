@@ -1,6 +1,7 @@
 package `in`.dmart.enterprise.refilling.ui.view.activity.task.review
 
 import `in`.dmart.enterprise.refilling.R
+import `in`.dmart.enterprise.refilling.apiutil.Status
 import `in`.dmart.enterprise.refilling.constant.Constant
 import `in`.dmart.enterprise.refilling.databinding.ActivityReviewTaskBinding
 import `in`.dmart.enterprise.refilling.databinding.ReviewTaskRowBinding
@@ -35,10 +36,26 @@ class ReviewTaskRowActivity : BaseActivity<ActivityReviewTaskBinding>(),AdapterL
 
     }
 
-    private fun setObserver(){
-        taskReviewRowViewModel.rowList.observe(this, Observer {
-            setAdapter(it)
-        } )
+    private fun setObserver() {
+        taskReviewRowViewModel.rowList.observe(this, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let {
+                        hideProgressDialog()
+                        setAdapter(it)
+                    }
+                }
+                Status.LOADING -> {
+                    showProgressDialog()
+                }
+                Status.ERROR -> {
+                   hideProgressDialog()
+                    if (it.message?.isNotEmpty() == true) {
+                        showToast(it.message)
+                    }
+                }
+            }
+        })
     }
 
     private fun setAdapter(rowList: List<Row>){
